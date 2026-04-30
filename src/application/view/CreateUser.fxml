@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #51625C;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="778.0" fitWidth="1383.0" layoutY="22.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../Resource/Trashome%20background.png" />
+         </image>
+      </ImageView>
+      <VBox fillWidth="false" layoutX="36.0" layoutY="103.0" prefHeight="486.0" prefWidth="587.0">
+         <children>
+            <Label prefHeight="35.0" prefWidth="122.0" text="Nombre:" textFill="#f5f5f5">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_Name" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="582.0" promptText="Ingresa tu nombre" />
+            <Label prefHeight="32.0" prefWidth="88.0" text="Edad:" textFill="#f5f5f5">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_Age" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="583.0" promptText="Ingresa tu edad" />
+            <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="136.0" text="Direccion:" textFill="#f5f5f5">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_Addres" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="581.0" promptText="Ingresa tu direccion" />
+            <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="227.0" text="Correo Electronico:" textFill="#f5f5f5" VBox.vgrow="NEVER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_email" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="583.0" promptText="ejemplo@gmail.com" />
+            <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="227.0" text="Contrasena:" textFill="#f5f5f5">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <PasswordField prefHeight="32.0" prefWidth="582.0" promptText="*********" />
+            <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="227.0" text="Codigo Postal:" textFill="#f5f5f5">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_CP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="584.0" promptText="Ingresa tu codigo Postal" />
+            <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="258.0" text="Numero de Telefono:" textFill="#f5f5f5">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_Telephone" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="584.0" promptText="Ingresa tu Nunero de Telefono" />
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" disable="true" layoutX="-3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="1288.0" style="-fx-background-color: #2B3034;">
+         <children>
+            <Text fill="WHITE" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font: #ffff;" text="Crear Nuevo Usuario">
+               <font>
+                  <Font size="37.0" />
+               </font>
+            </Text>
+         </children>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </VBox>
+      <Button fx:id="btn_Login" layoutX="36.0" layoutY="597.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="49.0" prefWidth="136.0" style="-fx-background-color: #0078D7; -fx-text-fill: white;" styleClass="boton-estilo" stylesheets="@../../../bin/application/view/CrearCamion.css" text="Crear">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

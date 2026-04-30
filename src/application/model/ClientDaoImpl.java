@@ -5,103 +5,142 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ClientDaoImpl implements ClienteDao{
-	private Connection conexion;
-	
-	public ClientDaoImpl(Connection conexion) {
-		this.conexion = conexion;
-	}
-	
-	@Override
-	public void guardarCliente(Client cliente) {
-		// Preparamos la consultt para la base de datos
-		String sql = "INSERT INTO clientes(name, age, idUser, CP, email, phone, password) VALUES(?,?,?,?,?,?,?)";
-		
-		try {
-			//Cremaos la conexion y asignamos la consulta
-			PreparedStatement ps = conexion.prepareStatement(sql);
-			
-			//Rellenamos con los datos del cliente
-			ps.setString(1, cliente.getName());
-			ps.setInt(2, cliente.getAge());
-			ps.setInt(3, cliente.getIdUser());
-			ps.setInt(4, cliente.getCP());
-			ps.setString(5, cliente.getEmail());
-			ps.setString(6, cliente.getPhone());
-			ps.setString(7, cliente.getPassword());
-			
-			ps.executeUpdate();
-		} catch (SQLException e) {
-			System.out.println("Error al guardar: " + e);
-		}
-	}
-	
-	
-	@Override
-	public void actualizarCliente(Client cliente) {
-	    String sql = "UPDATE clientes SET name = ?, age = ?, CP = ?, email = ?, phone = ?, password = ? WHERE idUser = ?";
-	    
-	    try (PreparedStatement ps = conexion.prepareStatement(sql)) {
-	        // Aquí es donde pasamos los datos del objeto 'cliente' al SQL
-	        ps.setString(1, cliente.getName());
-	        ps.setInt(2, cliente.getAge());
-	        ps.setInt(3, cliente.getCP());
-	        ps.setString(4,  cliente.getEmail());
-	        ps.setString(5, cliente.getPhone());
-	        ps.setString(6, cliente.getPassword());
-	        ps.setInt(7, cliente.getIdUser());
-	        
-	        ps.executeUpdate();
-	        
-	    } catch (SQLException e) {
-	        System.out.println("Error al actualizar: " + e);
-	    }
-	}
-	
-	@Override
-	public void eliminarCliente(int idUSer) {
-		String sql = "Delete FROM clientes WHERE idUser = ?";
-		
-		try {
-			PreparedStatement ps = conexion.prepareStatement(sql);
-			
-			ps.setInt(1,idUSer);
-			
-			ps.executeUpdate();
-			
-		} catch (SQLException e) {
-			System.out.println("Ha ocurrido un error "+ e);
-		}
-	}
-	
-	@Override
-	public Client buscarPorId(int idUSer) {
-		String sql = "SELECT * FROM clientes WHERE idUser = ?";
-		Client cliente = null;
-		
-		try {
-			PreparedStatement ps = conexion.prepareStatement(sql);
-			
-			ps.setInt(1,idUSer);
-			
-			ResultSet rs = ps.executeQuery();
-			
-			if(rs.next()) {
-				cliente = new Client();
-				
-				cliente.setidUser(rs.getInt("idUser"));
-				cliente.setName(rs.getString("name"));
-				cliente.setAge(rs.getInt("age"));
-				cliente.setCP(rs.getInt("CP"));
-				cliente.setEmail(rs.getString("email"));
-				cliente.setPhone(rs.getString("phone"));
-				cliente.setPassword(rs.getString("password"));
-				
-			}
-			
-		} catch (SQLException e) {
-			System.out.println("Error al acceder a la base de datos " + e);
-		}
-		return cliente;
-	}
+import Modelo.ConexionSQL;
+
+public class ClientDaoImpl implements ClienteDao {
+
+    private Connection conexion;
+
+    public ClientDaoImpl(Connection conexion) {
+        this.conexion = conexion;
+    }
+
+    @Override
+    public void guardarCliente(Client cliente) {
+
+        String sql = "INSERT INTO usuarios (IdUsuario, nombre, edad, correoElectronico, contrasena, numTelefono, codigoPostal, direccionDom) VALUES (?,?,?,?,?,?,?,?)";
+
+        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setInt(1, cliente.getIdUser());
+            ps.setString(2, cliente.getName());
+            ps.setInt(3, cliente.getAge());
+            ps.setString(4, cliente.getEmail());
+            ps.setString(5, cliente.getPassword());
+            ps.setInt(6, Integer.parseInt(cliente.getPhone()));
+            ps.setInt(7, cliente.getCP());
+            ps.setString(8, cliente.getAddress());
+
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Error al guardar: " + e);
+        }
+    }
+
+    @Override
+    public void actualizarCliente(Client cliente) {
+
+        String sql = "UPDATE usuarios SET nombre = ?, edad = ?, correoElectronico = ?, contrasena = ?, numTelefono = ?, codigoPostal = ?, direccionDom = ? WHERE IdUsuario = ?";
+
+        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setString(1, cliente.getName());
+            ps.setInt(2, cliente.getAge());
+            ps.setString(3, cliente.getEmail());
+            ps.setString(4, cliente.getPassword());
+            ps.setInt(5, Integer.parseInt(cliente.getPhone()));
+            ps.setInt(6, cliente.getCP());
+            ps.setString(7, cliente.getAddress());
+            ps.setInt(8, cliente.getIdUser());
+
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Error al actualizar: " + e);
+        }
+    }
+
+    @Override
+    public void eliminarCliente(int idUser) {
+
+        String sql = "DELETE FROM usuarios WHERE IdUsuario = ?";
+
+        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setInt(1, idUser);
+
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Ha ocurrido un error " + e);
+        }
+    }
+
+    @Override
+    public Client buscarPorId(int idUser) {
+
+        String sql = "SELECT * FROM usuarios WHERE IdUsuario = ?";
+        Client cliente = null;
+
+        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setInt(1, idUser);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                cliente = new Client();
+
+                cliente.setidUser(rs.getInt("IdUsuario"));
+                cliente.setName(rs.getString("nombre"));
+                cliente.setAge(rs.getInt("edad"));
+                cliente.setEmail(rs.getString("correoElectronico"));
+                cliente.setPassword(rs.getString("contrasena"));
+                cliente.setPhone(String.valueOf(rs.getInt("numTelefono")));
+                cliente.setCP(rs.getInt("codigoPostal"));
+                cliente.setAddress(rs.getString("direccionDom"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al acceder a la base de datos " + e);
+        }
+
+        return cliente;
+    }
+
+    @Override
+    public Client inicioDeSesion(String email) {
+
+        String sql = "SELECT * FROM usuarios WHERE correoElectronico = ?";
+        Client cliente = null;
+
+        try (Connection con = new ConexionSQL().conectar();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, email);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                cliente = new Client();
+
+                cliente.setidUser(rs.getInt("IdUsuario"));
+                cliente.setName(rs.getString("nombre"));
+                cliente.setAge(rs.getInt("edad"));
+                cliente.setEmail(rs.getString("correoElectronico"));
+                cliente.setPassword(rs.getString("contrasena"));
+                cliente.setPhone(String.valueOf(rs.getInt("numTelefono")));
+                cliente.setCP(rs.getInt("codigoPostal"));
+                cliente.setAddress(rs.getString("direccionDom"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al buscar por email: " + e);
+        }
+
+        return cliente;
+    }
 }

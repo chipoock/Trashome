@@ -12,21 +12,29 @@ import javafx.fxml.FXMLLoader;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/application/view/CreateRoute.fxml"));
-			Scene scene =new Scene(root);
-			primaryStage.setScene(scene); 
-			primaryStage.show();
-			
-			
-			
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+	    try {
+	        // 1. Cargamos el diseño desde la carpeta de vistas
+	        // Nota: El nombre del archivo debe terminar en .fxml
+	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/loginView.fxml"));
+	        Parent root = loader.load();
+
+	        // 2. Creamos la escena (el contenido de la ventana)
+	        Scene scene = new Scene(root);
+
+	        // 3. Configuramos y mostramos el escenario (la ventana física)
+	        primaryStage.setTitle("Sistema de Rutas - Login 🔑");
+	        primaryStage.setScene(scene);
+	        primaryStage.show();
+	        
+	    } catch(Exception e) {
+	        // Si la ruta está mal, aquí nos avisará el error
+	        e.printStackTrace();
+	    }
 	}
 	
 	public static void main(String[] args) {
 		launch(args);
+		ConexionSQL conexion = new ConexionSQL();
+		conexion.Conectar();
 	}
 }

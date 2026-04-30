@@ -6,46 +6,44 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="350.0" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.LoginController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.LoginController">
    <children>
-      <VBox alignment="CENTER" layoutX="40.0" layoutY="50.0" prefHeight="350.0" prefWidth="270.0" spacing="15.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="30.0">
+      <ImageView fitHeight="806.0" fitWidth="1200.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../Resource/Trashome%20background.png" />
+         </image>
+      </ImageView>
+      <VBox alignment="CENTER" layoutX="14.0" layoutY="33.0" prefHeight="740.0" prefWidth="570.0" spacing="15.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="616.0" AnchorPane.topAnchor="33.0">
          <children>
-            
-            <Label text="Trashome">
-               <font>
-                  <Font name="System Bold" size="28.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="2.0" />
-               </VBox.margin>
-            </Label>
-            <Label text="Inicia sesión para continuar" textFill="#6b6b6b">
+            <Label text="Inicia sesión para continuar" textFill="WHITE">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
                <font>
-                  <Font size="14.0" />
+                  <Font size="29.0" />
                </font>
             </Label>
 
             <VBox spacing="5.0">
                <children>
-                  <Label text="Usuario:" textFill="#333333">
+                  <Label text="Correo:" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
-                  <TextField fx:id="txt_User" prefHeight="35.0" promptText="Ingresa tu usuario" />
+                  <TextField fx:id="txt_Correo" prefHeight="35.0" promptText="ejemplo@gmail.com" />
                </children>
             </VBox>
 
             <VBox spacing="5.0">
                <children>
-                  <Label text="Contraseña:" textFill="#333333">
+                  <Label text="Contraseña:" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
@@ -53,7 +51,7 @@
                </children>
             </VBox>
 
-            <Button fx:id="btn_Login" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="40.0" style="-fx-background-color: #0078D7; -fx-text-fill: white;" styleClass="button-login" text="Ingresar">
+            <Button fx:id="btn_Login" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="40.0" style="-fx-background-color: #0078D7; -fx-text-fill: white;" styleClass="boton-estilo" stylesheets="@../../../bin/application/view/CrearCamion.css" text="Ingresar">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
@@ -71,7 +69,7 @@
                   
                   <HBox alignment="CENTER" spacing="5.0">
                      <children>
-                        <Label text="¿No tienes cuenta?" textFill="#6b6b6b" />
+                        <Label text="¿No tienes cuenta?" textFill="WHITE" />
                         <Hyperlink fx:id="linkRegistro" onAction="#abrirRegistro" text="Regístrate aquí" />
                      </children>
                   </HBox>

@@ -8,12 +8,13 @@ public abstract class Users {
 	private String email;
 	private String phone;
 	private String password;
+	private String address;
 	
 	public Users() {
 	
 	}
 	
-	public Users(String name, int age, int idUser, int CP, String email, String phone, String password) {
+	public Users(String name, int age, int idUser, int CP, String email, String phone, String password, String address) {
 	    if (age < 18) {
 	        throw new IllegalArgumentException("El usuario debe ser mayor de edad");
 	    }
@@ -123,4 +124,17 @@ public abstract class Users {
 	    }
 		this.password = password;
 	}
+
+	public void setAddress(String address) {
+		if(address == null) {
+			throw new IllegalArgumentException("Este campo no puede estar vacio");
+		}
+		this.address = address;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+	
+	
 }
