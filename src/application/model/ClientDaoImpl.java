@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import Modelo.ConexionSQL;
 
 public class ClientDaoImpl implements ClienteDao {
 
@@ -27,7 +26,7 @@ public class ClientDaoImpl implements ClienteDao {
             ps.setInt(3, cliente.getAge());
             ps.setString(4, cliente.getEmail());
             ps.setString(5, cliente.getPassword());
-            ps.setInt(6, Integer.parseInt(cliente.getPhone()));
+            ps.setString(6, cliente.getPhone());
             ps.setInt(7, cliente.getCP());
             ps.setString(8, cliente.getAddress());
 
@@ -49,7 +48,7 @@ public class ClientDaoImpl implements ClienteDao {
             ps.setInt(2, cliente.getAge());
             ps.setString(3, cliente.getEmail());
             ps.setString(4, cliente.getPassword());
-            ps.setInt(5, Integer.parseInt(cliente.getPhone()));
+            ps.setString(5, cliente.getPhone());
             ps.setInt(6, cliente.getCP());
             ps.setString(7, cliente.getAddress());
             ps.setInt(8, cliente.getIdUser());
@@ -98,7 +97,7 @@ public class ClientDaoImpl implements ClienteDao {
                 cliente.setAge(rs.getInt("edad"));
                 cliente.setEmail(rs.getString("correoElectronico"));
                 cliente.setPassword(rs.getString("contrasena"));
-                cliente.setPhone(String.valueOf(rs.getInt("numTelefono")));
+                cliente.setPhone(rs.getString("numTelefono"));
                 cliente.setCP(rs.getInt("codigoPostal"));
                 cliente.setAddress(rs.getString("direccionDom"));
             }
@@ -116,8 +115,7 @@ public class ClientDaoImpl implements ClienteDao {
         String sql = "SELECT * FROM usuarios WHERE correoElectronico = ?";
         Client cliente = null;
 
-        try (Connection con = new ConexionSQL().conectar();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
 
             ps.setString(1, email);
 
@@ -132,7 +130,7 @@ public class ClientDaoImpl implements ClienteDao {
                 cliente.setAge(rs.getInt("edad"));
                 cliente.setEmail(rs.getString("correoElectronico"));
                 cliente.setPassword(rs.getString("contrasena"));
-                cliente.setPhone(String.valueOf(rs.getInt("numTelefono")));
+                cliente.setPhone(rs.getString("numTelefono"));
                 cliente.setCP(rs.getInt("codigoPostal"));
                 cliente.setAddress(rs.getString("direccionDom"));
             }
@@ -142,5 +140,39 @@ public class ClientDaoImpl implements ClienteDao {
         }
 
         return cliente;
+    }
+    
+    @Override
+    public Client inicioDeSesionId(int idUser) {
+    	
+    	String sql = "SELECT * FROM usuarios WHERE IdUsuario = ?";
+    	Client cliente = null;
+    	
+    	try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setInt(1, idUser);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                cliente = new Client();
+
+                cliente.setidUser(rs.getInt("IdUsuario"));
+                cliente.setName(rs.getString("nombre"));
+                cliente.setAge(rs.getInt("edad"));
+                cliente.setEmail(rs.getString("correoElectronico"));
+                cliente.setPassword(rs.getString("contrasena"));
+                cliente.setPhone(rs.getString("numTelefono"));
+                cliente.setCP(rs.getInt("codigoPostal"));
+                cliente.setAddress(rs.getString("direccionDom"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al buscar por email: " + e);
+        }
+    	
+    	return cliente;
+    	
     }
 }

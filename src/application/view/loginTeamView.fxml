@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@CreateUser.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.LoginController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@CreateUser.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.loginTeamController">
    <children>
       <!-- Background Image -->
       <ImageView fitHeight="800.0" fitWidth="1280.0" pickOnBounds="true">
@@ -23,21 +23,21 @@
       </ImageView>
       
       <!-- Glassmorphism Card (Left-Aligned) -->
-      <VBox alignment="CENTER" maxWidth="500.0" maxHeight="500.0" spacing="20.0" styleClass="glass-card" StackPane.alignment="CENTER_LEFT">
+      <VBox alignment="CENTER" maxHeight="500.0" maxWidth="500.0" spacing="20.0" styleClass="glass-card" StackPane.alignment="CENTER_LEFT">
          <StackPane.margin>
             <Insets left="60.0" />
          </StackPane.margin>
          <children>
             <!-- Title -->
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Iniciar Sesión" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text=" Iniciar Sesion Empleado" />
             
             <VBox prefHeight="10.0" />
 
             <!-- Email Field -->
             <VBox spacing="5.0" styleClass="input-container">
                <children>
-                  <Label text="Correo Electrónico:" />
-                  <TextField fx:id="txt_Correo" promptText="ejemplo@gmail.com" />
+                  <Label text="ID Empleado" />
+                  <TextField fx:id="txt_id" promptText="012345" />
                </children>
             </VBox>
 
@@ -52,21 +52,16 @@
             <VBox prefHeight="5.0" />
 
             <!-- Login Button -->
-            <Button fx:id="btn_Login" mnemonicParsing="false" onAction="#iniciarSesion" styleClass="btn-primary" text="Ingresar" />
+            <Button fx:id="btn_login_Employee" mnemonicParsing="false" onAction="#iniciarSesion" styleClass="btn-primary" text="Ingresar" />
 
             <!-- Error Label -->
             <Label fx:id="lbl_mensaje" styleClass="error-text" />
 
             <!-- Links -->
-            <VBox alignment="CENTER" spacing="10.0">
+            <VBox alignment="CENTER" prefHeight="107.0" prefWidth="450.0" spacing="10.0">
                <children>
-                  <HBox alignment="CENTER" spacing="5.0">
-                     <children>
-                        <Label style="-fx-text-fill: #444444; -fx-font-weight: bold;" text="¿No tienes cuenta?" />
-                        <Hyperlink fx:id="linkRegistro" onAction="#abrirRegistro" styleClass="link-text" text="Regístrate aquí" />
-                     </children>
-                  </HBox>
-                  <Hyperlink fx:id="linkEquipo" onAction="#registroEquipo" styleClass="link-text" text="¿Eres parte de nuestro equipo?" />
+                  <HBox alignment="CENTER" spacing="5.0" />
+                  <Hyperlink fx:id="linkInicio" onAction="#volveralinicio" styleClass="link-text" text="Volver al inicio" />
                </children>
             </VBox>
          </children>

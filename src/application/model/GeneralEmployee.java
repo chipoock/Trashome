@@ -5,9 +5,9 @@ import java.time.LocalDate;
 public class GeneralEmployee extends Employee {
 	private Camiones camionAsignado;
 
-	public GeneralEmployee(String name, int age, int idUser, int CP, String email, String phone, String password,
+	public GeneralEmployee(String name, int age, int idUser, int CP, String email, String phone, String password, String address,
 			LocalDate hiringDate, int salary, Camiones camionAsignado) {
-		super(name, age, idUser, CP, email, phone, password, hiringDate, salary);
+		super(name, age, idUser, CP, email, phone, password, address, hiringDate, salary);
         
 
         setCamionAsignado(camionAsignado);

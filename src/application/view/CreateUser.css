@@ -1,0 +1,71 @@
+/* White Glassmorphism card */
+.glass-card {
+    -fx-background-color: rgba(255, 255, 255, 0.85);
+    -fx-background-radius: 20;
+    -fx-padding: 40;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 20, 0, 0, 10);
+}
+
+.title-text {
+    -fx-font-family: "Arial";
+    -fx-font-size: 38px;
+    -fx-font-weight: bold;
+    -fx-fill: #222222;
+}
+
+.input-container .label {
+    -fx-text-fill: #444444;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.input-container .text-field, .input-container .password-field {
+    -fx-background-color: rgba(255, 255, 255, 1);
+    -fx-text-fill: #222222;
+    -fx-prompt-text-fill: #909090;
+    -fx-background-radius: 8;
+    -fx-padding: 10 15;
+    -fx-font-size: 14px;
+    -fx-border-color: #CCCCCC;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+}
+
+.input-container .text-field:focused, .input-container .password-field:focused {
+    -fx-border-color: #0078D7;
+    -fx-border-width: 2;
+    -fx-background-color: white;
+}
+
+.btn-primary {
+    -fx-background-color: #0078D7;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 12 30;
+    -fx-cursor: hand;
+    -fx-min-width: 200px;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #005a9e;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 120, 215, 0.4), 10, 0, 0, 5);
+}
+
+.link-text {
+    -fx-text-fill: #0078D7;
+    -fx-font-size: 14px;
+    -fx-underline: false;
+    -fx-cursor: hand;
+}
+
+.link-text:hover {
+    -fx-underline: true;
+}
+
+.error-text {
+    -fx-text-fill: #D32F2F;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}

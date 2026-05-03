@@ -27,7 +27,7 @@
 
 /* Fondo del menú */
 .context-menu {
-    -fx-background-color:  #2B3034;
+    -fx-background-color: #2B3034;
 }
 
 /* Items normales */
@@ -61,7 +61,7 @@
     -fx-background-radius: 6;
     -fx-cursor: hand;
 
-    
+
 }
 
 /* Hover */
