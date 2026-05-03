@@ -1,10 +1,18 @@
 package application.controller;
 
+import javafx.scene.control.Label;
+import java.sql.Connection;
+
+import Modelo.ConexionSQL;
+import application.model.Client;
+import application.model.ClientDaoImpl;
+import application.model.ClienteDao;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -16,7 +24,14 @@ public class CreateUserController {
     private TextField txt_Name;
 
     @FXML
-    private TextField txt_Age;
+    private ChoiceBox<Integer> choiceBox_Age;
+
+    @FXML
+    public void initialize() {
+        for (int i = 18; i <= 60; i++) {
+            choiceBox_Age.getItems().add(i);
+        }
+    }
 
     @FXML
     private TextField txt_Addres;
@@ -35,32 +50,59 @@ public class CreateUserController {
 
     @FXML
     private Button btn_Login;
-    
+
     @FXML
     private Hyperlink hyperlink_volveralinicio;
 
     @FXML
-    private void iniciarSesion() {
-        System.out.println("Clic en crear usuario...");
-        // Aquí puedes agregar la lógica para guardar el usuario usando ClienteDao
+    private Label lbl_text;
+
+    @FXML
+    private void CrearUsuario() {
+        try {
+            // 1. Capturar datos
+            String name = txt_Name.getText();
+            Integer ageValue = choiceBox_Age.getValue();
+            int age = (ageValue != null) ? ageValue : 18; // Valor por defecto 18 si no se selecciona nada
+            String addres = txt_Addres.getText();
+            String email = txt_email.getText();
+            int cp = Integer.parseInt(txt_CP.getText());
+            String telephone = txt_Telephone.getText();
+            String password = txt_Password.getText();
+
+            // 2. Conexión
+            Connection con = new ConexionSQL().conectar();
+            if (con == null) {
+                return;
+            }
+
+            // 3. Crear objeto y guardar
+            Client cliente = new Client(name, age, 0, cp, email, telephone, password, addres);
+            ClienteDao clientedao = new ClientDaoImpl(con);
+
+            clientedao.guardarCliente(cliente);
+
+        } catch (Exception e) {
+            lbl_text.setText("Ha ocurrido un error");
+            e.printStackTrace();
+        }
     }
-    
+
     @FXML
     private void volveralinicio() {
-		try {
-			// Repetimos el proceso
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/loginView.fxml"));
-			Parent root = loader.load();
+        try {
+            // Repetimos el proceso
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/loginView.fxml"));
+            Parent root = loader.load();
 
-			Stage stage = (Stage) hyperlink_volveralinicio.getScene().getWindow();
+            Stage stage = (Stage) hyperlink_volveralinicio.getScene().getWindow();
 
-			Scene scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
-
