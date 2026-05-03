@@ -22,15 +22,27 @@ public class CrearCamionController implements Initializable {
 	    @Override
 	    public void initialize(URL url, ResourceBundle rb) {
 	        engine = mapa.getEngine();
-	        engine.load("https://opentopomap.org/");
+	        engine.load("https://opentopomap.org/#map=13/20.6736/-103.344");
+	        
+	        engine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
+	            if (newState == javafx.concurrent.Worker.State.SUCCEEDED) {
+	                engine.executeScript("""
+	                    // Busca el control de capas y selecciona OpenStreetMap
+	                    let labels = document.querySelectorAll('label');
+	                    labels.forEach(l => {
+	                        if (l.innerText.includes('OpenStreetMap')) {
+	                            l.click();
+	                        }
+	                    });
+	                """);
+	            }
+	        });
+	        
+	        
 	    }
 	
-	@FXML
-	private Button bottonRouts;
+
 	
-	@FXML
-	private void ChangeToRouts(){
-	    System.out.println("Guardado");
 		
 	}
 	
@@ -38,6 +50,4 @@ public class CrearCamionController implements Initializable {
 
 	
 	
-	
 
-}

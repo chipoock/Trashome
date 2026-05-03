@@ -15,14 +15,14 @@ public class Main extends Application {
 	    try {
 	        // 1. Cargamos el diseño desde la carpeta de vistas
 	        // Nota: El nombre del archivo debe terminar en .fxml
-	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/loginView.fxml"));
+	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/EscenaPrincipal.fxml"));
 	        Parent root = loader.load();
 
 	        // 2. Creamos la escena (el contenido de la ventana)
 	        Scene scene = new Scene(root);
 
 	        // 3. Configuramos y mostramos el escenario (la ventana física)
-	        primaryStage.setTitle("Sistema de Rutas - Login 🔑");
+	        primaryStage.setTitle("Trashome");
 	        primaryStage.setScene(scene);
 	        primaryStage.show();
 	        
@@ -34,7 +34,5 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
-		ConexionSQL conexion = new ConexionSQL();
-		conexion.Conectar();
 	}
 }

@@ -1,0 +1,95 @@
+/* Botón estilo Uiverse adaptado a JavaFX */
+
+
+.boton-pro {
+    -fx-background-color:  #2E5D4D;
+    -fx-text-fill: white;
+
+    -fx-font-family: "Montserrat";
+    -fx-font-size: 14px;
+
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+
+
+
+}
+
+/* Hover */
+.boton-pro:hover {
+    -fx-background-color: #2E5D4D;
+    -fx-text-fill: #e4ebf0;
+
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+}
+
+/* Click */
+.boton-pro:pressed {
+	-fx-background-color: #265242;
+    -fx-scale-x: 0.90;
+    -fx-scale-y: 0.90;
+}
+
+
+
+
+.textCal {
+    -fx-background-color:   #2B3034 ;
+    -fx-text-fill: white;
+    -fx-font-weight: bold Italic;
+
+    -fx-font-family: "Montserrat";
+    -fx-font-size: 14px;
+
+
+
+
+}
+
+
+
+
+
+
+/* Cada recuadro */
+.calendar-cell {
+
+    -fx-background-color: linear-gradient(to bottom,  #D9D4C7,  #D9D4C7);
+    -fx-background-radius: 8;
+
+    -fx-border-color: black;
+    -fx-border-width: 1;
+
+    -fx-min-width: 95;
+    -fx-min-height: 78;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+.evento-organico{
+    -fx-background-color: #2E5D4D;
+}
+
+.evento-reciclable{
+    -fx-background-color: #624621;
+}
+
+.evento-inorganico{
+    -fx-background-color: #414049;
+}
+
+
+
+
+
+

@@ -1,0 +1,68 @@
+/* Botón estilo Uiverse adaptado a JavaFX */
+
+.boton-pro {
+    -fx-background-color:  #D9D4C7;
+    -fx-text-fill: black;
+
+    -fx-font-family: "Montserrat";
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+
+
+
+}
+
+/* Hover */
+.boton-pro:hover {
+    -fx-background-color: #2E5D4D;
+    -fx-text-fill: #e4ebf0;
+
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+}
+
+/* Click */
+.boton-pro:pressed {
+	-fx-background-color: #265242;
+    -fx-scale-x: 0.90;
+    -fx-scale-y: 0.90;
+}
+
+
+/* Contenedor base */
+.mi-hbox {
+    -fx-background-color: linear-gradient(to right,  #D9D4C7,  #D9D4C7);
+    
+    /* Sombra suave */
+
+    /* Para que el cambio sea más elegante */
+    -fx-cursor: hand;
+}
+
+/* Hover (cuando pasas el mouse) */
+.mi-hbox:hover {
+    -fx-background-color: linear-gradient(to right, #2E5D4D, #2E5D4D);
+
+    /* Sombra más intensa al hacer hover */
+}
+
+/* Cuando haces click */
+.mi-hbox:pressed {
+    -fx-background-color: #245144;
+}
+
+/* Opcional: si tienes texto dentro */
+.mi-hbox .label {
+	 -fx-font-family: "Montserrat";
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+/* Hover en texto */
+.mi-hbox:hover .label {
+    -fx-text-fill: #0b2e13;
+}

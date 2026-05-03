@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="700.0" maxWidth="1200.0" minHeight="400.0" minWidth="939.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+
+   <center>
+      <BorderPane style="-fx-background-color: #0B161E; -fx-background-radius: 15; -fx-border-width: 2; -fx-border-radius: 15;" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <center>
+            <BorderPane maxHeight="700.0" maxWidth="1100.0" minHeight="500.0" minWidth="500.0" BorderPane.alignment="CENTER">
+               <center>
+                  <GridPane alignment="BASELINE_LEFT" gridLinesVisible="true" styleClass="calendar-cell" stylesheets="@Calendario.css" BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" prefWidth="100.0" />
+                     
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="2.0" prefHeight="2.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+
+                    </rowConstraints>
+                     <children>
+                        <VBox alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #2E5D4D;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <Label prefHeight="32.0" prefWidth="80.0" text="2" textFill="WHITE">
+                                 <font>
+                                    <Font name="Proxy 1" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="8.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="84.0" styleClass="boton-pro" stylesheets="@Calendario.css" text="Organico" textFill="#f5f5f5" />
+                              <ImageView fitHeight="27.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../Resource/camion-de-reciclaje.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets bottom="1.0" right="6.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="evento-reciclable" stylesheets="@Calendario.css" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <top>
+                              <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@Calendario.css" text="4" textFill="WHITE" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="Proxy 1" size="12.0" />
+                                 </font>
+                                 <BorderPane.margin>
+                                    <Insets left="8.0" top="4.0" />
+                                 </BorderPane.margin>
+                              </Label>
+                           </top>
+                           <center>
+                              <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@Calendario.css" text="Reciclable" textFill="#f5f5f5" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="boton-pro" />
+                                    <String fx:value="evento-reciclable" />
+                                 </styleClass></Button>
+                           </center>
+                           <bottom>
+                              <HBox alignment="BASELINE_RIGHT" prefWidth="80.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <ImageView fitHeight="27.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Resource/camion-de-reciclaje.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets bottom="1.0" right="6.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                           </bottom>
+                        </BorderPane>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #414049;" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                           <top>
+                              <Label prefHeight="20.0" prefWidth="80.0" text="7" textFill="WHITE" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="Proxy 1" size="12.0" />
+                                 </font>
+                              </Label>
+                           </top>
+                           <center>
+                              <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #414049;" styleClass="boton-pro" stylesheets="@Calendario.css" text="Inorganico" textFill="#f5f5f5" BorderPane.alignment="CENTER" />
+                           </center>
+                           <bottom>
+                              <HBox alignment="BASELINE_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <ImageView fitHeight="27.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Resource/camion-de-reciclaje.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets bottom="1.0" right="6.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                           </bottom>
+                        </BorderPane>
+                        <BorderPane prefHeight="63.0" prefWidth="113.0">
+                           <center>
+                              <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="55.0" minWidth="55.0" styleClass="textCal" stylesheets="@Calendario.css" text="Lunes" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                        <BorderPane prefHeight="63.0" prefWidth="113.0" GridPane.columnIndex="1">
+                           <center>
+                              <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="55.0" minWidth="55.0" styleClass="textCal" stylesheets="@Calendario.css" text="Martes" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                        <BorderPane prefHeight="63.0" prefWidth="113.0" GridPane.columnIndex="2">
+                           <center>
+                              <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="55.0" minWidth="55.0" styleClass="textCal" stylesheets="@Calendario.css" text="Miercoles" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                        <BorderPane prefHeight="63.0" prefWidth="113.0" GridPane.columnIndex="3">
+                           <center>
+                              <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="55.0" minWidth="55.0" styleClass="textCal" stylesheets="@Calendario.css" text="Jueves" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                        <BorderPane prefHeight="63.0" prefWidth="113.0" GridPane.columnIndex="4">
+                           <center>
+                              <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="55.0" minWidth="55.0" styleClass="textCal" stylesheets="@Calendario.css" text="Viernes" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                        <BorderPane prefHeight="63.0" prefWidth="113.0" GridPane.columnIndex="5">
+                           <center>
+                              <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="55.0" minWidth="55.0" styleClass="textCal" stylesheets="@Calendario.css" text="Sabado" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                        <BorderPane prefHeight="63.0" prefWidth="113.0" GridPane.columnIndex="6">
+                           <center>
+                              <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="55.0" minWidth="55.0" styleClass="textCal" stylesheets="@Calendario.css" text="Domingo" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                     </children>
+                  </GridPane>
+               </center>
+               <BorderPane.margin>
+                  <Insets bottom="70.0" left="30.0" right="30.0" top="70.0" />
+               </BorderPane.margin>
+               <top>
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="678.0" style="-fx-text-fill: white; -fx-background-color: #2B3034; -fx-background-radius: 5;" stylesheets="@Calendario.css" text="Abril" textAlignment="CENTER" textFill="#030303" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="Hack Nerd Font Mono Regular" size="27.0" />
+                     </font>
+                     <BorderPane.margin>
+                        <Insets />
+                     </BorderPane.margin>
+                  </Label>
+               </top>
+            </BorderPane>
+         </center>
+         <right>
+            <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="300.0" prefWidth="300.0" style="-fx-background-color: #4A5259; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-width: 5;" BorderPane.alignment="CENTER">
+               <top>
+                  <Label alignment="CENTER" prefHeight="66.0" prefWidth="300.0" style="-fx-background-color: #2B3034; -fx-border-radius: 15; -fx-border-width: 2; -fx-background-size: 13;" text="Martes" textFill="#fffcfc" textOverrun="CLIP" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="Hack Nerd Font Mono Bold Italic" size="18.0" />
+                     </font></Label>
+               </top>
+               <center>
+                  <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <HBox prefHeight="76.0" prefWidth="300.0" />
+                     </children>
+                  </VBox>
+               </center>
+            </BorderPane>
+         </right>
+
+      </BorderPane>
+   </center>
+
+   <effect>
+      <InnerShadow choke="0.11" height="98.43" radius="33.755" width="38.59" />
+   </effect>
+
+</BorderPane>

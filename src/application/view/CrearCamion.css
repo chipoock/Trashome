@@ -82,3 +82,32 @@
     -fx-scale-x: 0.98;
     -fx-scale-y: 0.98;
 }
+
+
+
+
+
+.input-contrast {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ffffff;
+    -fx-prompt-text-fill: #9aa4b2;
+
+    /* solo línea inferior */
+    -fx-border-color: transparent transparent #cfd6e4 transparent;
+    -fx-border-width: 0 0 1.5 0;
+
+    -fx-font-size: 14px;
+    -fx-padding: 6 2 6 2;
+}
+
+/* hover suave */
+.input-contrast:hover {
+    -fx-border-color: transparent transparent #e2e8f0 transparent;
+}
+
+/* focus (el importante) */
+.input-contrast:focused {
+    -fx-border-color: transparent transparent #183153 transparent;
+    -fx-border-width: 0 0 2 0;
+}
+
