@@ -15,7 +15,7 @@ public class prueba {
 		ResultSet rs = null;
 		
 		try {
-		cn = conexion.Conectar();
+		cn = conexion.conectar();
 		stm = cn.createStatement();
 		
 		rs = stm.executeQuery("DESCRIBE usuarios");

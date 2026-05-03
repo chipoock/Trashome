@@ -5,8 +5,8 @@ public class Employee extends Users{
 	private double salary;
 	private LocalDate hiringDate;
 
-	public Employee(String name, int age, int idUser, int CP, String email, String phone, String password, LocalDate hiringDate, double salary) {
-		super(name, age, idUser, CP, email, phone, password);
+	public Employee(String name, int age, int idUser, int CP, String email, String phone, String password, String address, LocalDate hiringDate, double salary) {
+		super(name, age, idUser, CP, email, phone, password, address);
 		this.hiringDate = hiringDate;
 		setSalary(salary);
 	}
