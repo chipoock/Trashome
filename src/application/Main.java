@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
+		try {
 			// 1. Cargamos el diseño desde la carpeta de vistas
 			// Nota: El nombre del archivo debe terminar en .fxml
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/loginView.fxml"));
@@ -17,15 +18,14 @@ public class Main extends Application {
 
 			// 2. Creamos la escena (el contenido de la ventana)
 			Scene scene = new Scene(root);
-
 	        primaryStage.setTitle("Trashome");
 	        primaryStage.setScene(scene);
 	        primaryStage.show();
 	    } catch(Exception e) {
 	        // Si la ruta está mal, aquí nos avisará el error
 	        e.printStackTrace();
+	    }
 	}
-
 	public static void main(String[] args) {
 		launch(args);
 	}
