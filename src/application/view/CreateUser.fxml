@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -45,7 +46,7 @@
             <VBox spacing="5.0" styleClass="input-container">
                <children>
                   <Label text="Edad:" />
-                  <TextField fx:id="txt_Age" promptText="Ingresa tu edad" />
+                  <ChoiceBox fx:id="choiceBox_Age" prefHeight="36.0" prefWidth="150.0" styleClass="text-field" stylesheets="@CreateUser.css" />
                </children>
             </VBox>
 
@@ -88,12 +89,13 @@
                   <TextField fx:id="txt_Telephone" promptText="Ingresa tu número de teléfono" />
                </children>
             </VBox>
+            <Label fx:id="lbl_text" />
 
             <!-- Espaciado extra antes del botón -->
             <VBox prefHeight="10.0" />
 
             <!-- Botón de Registro -->
-            <Button fx:id="btn_Login" mnemonicParsing="false" onAction="#iniciarSesion" styleClass="btn-primary" text="Crear Cuenta" />
+            <Button fx:id="btn_Login" mnemonicParsing="false" onAction="#CrearUsuario" styleClass="btn-primary" text="Crear Cuenta" />
             <Hyperlink fx:id="hyperlink_volveralinicio" onAction="#volveralinicio" text="Volver al Inicio" />
          </children>
       </VBox>
