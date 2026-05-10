@@ -6,7 +6,7 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.sql.Connection;
 
-import Modelo.ConexionSQL;
+import application.model.ConexionSQL;
 import application.model.Client;
 import application.model.ClientDaoImpl;
 import application.model.ClienteDao;
@@ -70,20 +70,20 @@ public class loginTeamController {
 			}
 		}
 	}
-	
+
 	@FXML
 	private void volveralinicio() {
 		try {
-			//Repetimos el proceso
+			// Repetimos el proceso
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/loginView.fxml"));
 			Parent root = loader.load();
-			
+
 			Stage stage = (Stage) linkInicio.getScene().getWindow();
-			
+
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
-			
+
 		} catch (Exception e) {
 			lbl_mensaje.setText("No se pudo cargar la ventana de equipo");
 			e.printStackTrace();

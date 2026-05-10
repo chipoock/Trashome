@@ -3,7 +3,7 @@ package application.controller;
 import javafx.scene.control.Label;
 import java.sql.Connection;
 
-import Modelo.ConexionSQL;
+import application.model.ConexionSQL;
 import application.model.Client;
 import application.model.ClientDaoImpl;
 import application.model.ClienteDao;
@@ -81,6 +81,16 @@ public class CreateUserController {
             ClienteDao clientedao = new ClientDaoImpl(con);
 
             clientedao.guardarCliente(cliente);
+
+            // 4. Avisar al usuario
+            lbl_text.setText("¡Registro exitoso!");
+
+            // Regresar al Login después de registrarse
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/loginView.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) txt_Name.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
 
         } catch (Exception e) {
             lbl_text.setText("Ha ocurrido un error");
