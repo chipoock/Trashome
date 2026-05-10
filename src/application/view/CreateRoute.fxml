@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.BorderPane?>
@@ -47,7 +46,7 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <TextField prefWidth="226.0" promptText="El Carmen" styleClass="input-contrast" stylesheets="@CreateRoute.css">
+                  <TextField fx:id="nomRuta" prefWidth="226.0" promptText="El Carmen" styleClass="input-contrast" stylesheets="@CreateRoute.css">
                      <VBox.margin>
                         <Insets bottom="25.0" />
                      </VBox.margin>
@@ -57,7 +56,7 @@
                         <Font name="Hack Nerd Font Regular" size="16.0" />
                      </font>
                   </Label>
-                  <TextField promptText="45693" styleClass="input-contrast" stylesheets="@CreateRoute.css">
+                  <TextField fx:id="CP" promptText="45693" styleClass="input-contrast" stylesheets="@CreateRoute.css">
                      <VBox.margin>
                         <Insets bottom="25.0" />
                      </VBox.margin>
@@ -70,12 +69,12 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <TextField promptText="El Salto" styleClass="input-contrast" stylesheets="@CreateRoute.css">
+                  <TextField fx:id="municipio" promptText="El Salto" styleClass="input-contrast" stylesheets="@CreateRoute.css">
                      <VBox.margin>
                         <Insets bottom="25.0" />
                      </VBox.margin>
                   </TextField>
-                  <Label prefHeight="20.0" prefWidth="223.0" text="Calles" textFill="#f8f8f8">
+                  <Label alignment="CENTER" prefHeight="20.0" prefWidth="223.0" text="Calles" textFill="#f8f8f8">
                      <font>
                         <Font name="Hack Nerd Font Regular" size="16.0" />
                      </font>
@@ -83,9 +82,13 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <HBox prefHeight="57.0" prefWidth="226.0">
+                  <HBox alignment="CENTER" prefHeight="57.0" prefWidth="226.0">
                      <children>
-                        <TextField prefHeight="25.0" prefWidth="196.0" promptText="Santa Marta" stylesheets="@CreateRoute.css">
+                        <Button alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#BorrarCalles" prefHeight="27.0" prefWidth="30.0" style="-fx-background-radius: 3; -fx-background-color: #83241E;" styleClass="boton-estilo" stylesheets="@CreateRoute.css" text="-">
+                           <HBox.margin>
+                              <Insets top="-1.0" />
+                           </HBox.margin></Button>
+                        <TextField fx:id="calleText" alignment="CENTER" prefHeight="27.0" prefWidth="196.0" promptText="Santa Marta" styleClass="input-contrast" stylesheets="@CreateRoute.css">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -93,16 +96,13 @@
                               <Insets right="2.0" />
                            </HBox.margin>
                         </TextField>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="8.0" prefWidth="12.0" style="-fx-background-radius: 3;" styleClass="boton-estilo" stylesheets="@CreateRoute.css" text="+">
-                           <HBox.margin>
-                              <Insets top="-1.0" />
-                           </HBox.margin></Button>
+                        <Button alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#SumarCalles" prefHeight="13.0" prefWidth="22.0" style="-fx-background-radius: 3;" styleClass="boton-estilo" stylesheets="@CreateRoute.css" text="+" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin>
                   </HBox>
-                  <Label prefHeight="20.0" prefWidth="224.0" text="Dias de recoleccion" textFill="#f8f8f8">
+                  <Label prefHeight="20.0" prefWidth="224.0" text="Frecuencia Recoleccion" textFill="#f8f8f8">
                      <font>
                         <Font name="Hack Nerd Font Regular" size="16.0" />
                      </font>
@@ -110,24 +110,15 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <SplitMenuButton mnemonicParsing="false" popupSide="RIGHT" prefHeight="25.0" prefWidth="247.0">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Lunes" />
-                      <MenuItem mnemonicParsing="false" text="Martes" />
-                        <MenuItem mnemonicParsing="false" text="Miercoles" />
-                        <MenuItem mnemonicParsing="false" text="Jueves" />
-                        <MenuItem mnemonicParsing="false" text="Viernes" />
-                        <MenuItem mnemonicParsing="false" text="Sabado" />
-                        <MenuItem mnemonicParsing="false" text="Domingo" />
-                    </items>
-                     <stylesheets>
-                        <URL value="@CrearCamion.css" />
-                        <URL value="@CrearCamion.css" />
-                     </stylesheets>
+                  <ComboBox fx:id="frecuencia" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="242.0" stylesheets="@CreateRoute.css">
+                     <styleClass>
+                        <String fx:value="botonAlmacen" />
+                        <String fx:value="combo-box" />
+                     </styleClass>
                      <VBox.margin>
                         <Insets bottom="25.0" />
                      </VBox.margin>
-                  </SplitMenuButton>
+                  </ComboBox>
                   <Label prefHeight="20.0" prefWidth="227.0" text="Tipo de Asentamiento" textFill="#f8f8f8">
                      <font>
                         <Font name="Hack Nerd Font Regular" size="16.0" />
@@ -136,25 +127,15 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <SplitMenuButton contentDisplay="RIGHT" mnemonicParsing="false" popupSide="RIGHT" prefHeight="25.0" prefWidth="230.0">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Colonia" />
-                        <MenuItem mnemonicParsing="false" text="Condominio" />
-                        <MenuItem mnemonicParsing="false" text="Conjunto habitacional" />
-                        <MenuItem mnemonicParsing="false" text="Equipamiento" />
-                        <MenuItem mnemonicParsing="false" text="Fraccionamiento" />
-                        <MenuItem mnemonicParsing="false" text="Pueblo" />
-                        <MenuItem mnemonicParsing="false" text="Unidad Habitacional" />
-                        <MenuItem mnemonicParsing="false" text="Zona Industrial" />
-                     </items>
-                     <stylesheets>
-                        <URL value="@CrearCamion.css" />
-                        <URL value="@CrearCamion.css" />
-                     </stylesheets>
+                  <ComboBox fx:id="typeAs" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="242.0" stylesheets="@CreateRoute.css">
+                     <styleClass>
+                        <String fx:value="botonAlmacen" />
+                        <String fx:value="combo-box" />
+                     </styleClass>
                      <VBox.margin>
                         <Insets bottom="25.0" />
                      </VBox.margin>
-                  </SplitMenuButton>
+                  </ComboBox>
                   <Label prefHeight="20.0" prefWidth="227.0" text="Asentamiento" textFill="#f8f8f8">
                      <font>
                         <Font name="Hack Nerd Font Regular" size="16.0" />
@@ -163,16 +144,12 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <SplitMenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="230.0">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Las Pintitas, El Carmen, CP:45694" />
-                        <MenuItem mnemonicParsing="false" text="Action 2" />
-                     </items>
-                     <stylesheets>
-                        <URL value="@CrearCamion.css" />
-                        <URL value="@CrearCamion.css" />
-                     </stylesheets>
-                  </SplitMenuButton>
+                  <ComboBox fx:id="asentamientoBox" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="242.0" stylesheets="@CreateRoute.css">
+                     <styleClass>
+                        <String fx:value="botonAlmacen" />
+                        <String fx:value="combo-box" />
+                     </styleClass>
+                  </ComboBox>
                </children>
                <BorderPane.margin>
                   <Insets left="35.0" top="40.0" />
@@ -196,7 +173,7 @@
          <bottom>
             <BorderPane prefHeight="53.0" prefWidth="939.0" BorderPane.alignment="CENTER">
                <right>
-                  <Button alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="35.0" prefWidth="126.0" styleClass="boton-pro" stylesheets="@bottonAzul.css" text="Guardar" textAlignment="RIGHT" BorderPane.alignment="CENTER">
+                  <Button alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#CrearRuta" prefHeight="35.0" prefWidth="126.0" styleClass="boton-pro" stylesheets="@bottonAzul.css" text="Guardar" textAlignment="RIGHT" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="Hack Nerd Font Mono Regular" size="12.0" />
                      </font>
@@ -215,6 +192,23 @@
                      </BorderPane.margin>
                   </Button>
                </left>
+               <center>
+                  <VBox BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="vistaCalles" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="100.0" minWidth="650.0" style="-fx-background-color: #202427; -fx-background-radius: 20; -fx-border-color: #060C14; -fx-border-radius: 19; -fx-border-width: 2;" textFill="#f5f5f5">
+                           <font>
+                              <Font name="System Italic" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="10.0" right="10.0" top="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </VBox>
+               </center>
             </BorderPane>
          </bottom>
 

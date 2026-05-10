@@ -21,7 +21,7 @@
 }
 
 .split-menu-button:hover {
-    -fx-background-color: 265242;
+    -fx-background-color: #265242;
 }
 
 
@@ -42,7 +42,7 @@
 
 /* 🔥 Hover (cuando pasas el mouse) */
 .menu-item:focused {
-    -fx-background-color: white;
+    -fx-background-color: #2E5D4D ;
 }
 
 /* Texto en hover */
@@ -66,7 +66,7 @@
 
 /* Hover */
 .boton-estilo:hover {
-    -fx-background-color: linear-gradient(265242, 265242);
+    -fx-background-color: linear-gradient(#265242, #265242);
 }
 
 /* Click */
@@ -76,6 +76,33 @@
     -fx-scale-x: 0.98;
     -fx-scale-y: 0.98;
 }
+
+
+
+/*BOTON ESTILO DEL ALMACEN DE BOTONES */
+.botonAlmacen {
+    -fx-background-color: linear-gradient(  #184E53,  #184E53);
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+
+
+}
+
+/* Hover */
+.botonAlmacen:hover {
+    -fx-background-color: linear-gradient(#103437, #103437);
+}
+
+/* Click */
+.botonAlmacen:pressed {
+    -fx-background-color: #103437; /* más oscuro */
+    -fx-translate-y: 2; /* efecto de hundido */
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
 
 
 
@@ -135,3 +162,45 @@
     -fx-border-color: transparent transparent #183153 transparent;
     -fx-border-width: 0 0 2 0;
 }
+
+
+
+
+
+/* Fondo lista */
+.combo-box-popup .list-view {
+    -fx-background-color: #2B3034;
+    -fx-border-color: transparent;
+    
+}
+
+/* Cada item */
+.combo-box-popup .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    
+}
+
+/* Hover item */
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: #2E5D4D;
+    -fx-text-fill: white;
+}
+
+/* Item seleccionado con teclado */
+.combo-box-popup .list-cell:filled:selected {
+    -fx-background-color: #103437;
+    -fx-text-fill: white;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-alignment: center;
+    
+}
+
+
+
+

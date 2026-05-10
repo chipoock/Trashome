@@ -25,7 +25,7 @@
          <center>
             <BorderPane maxHeight="700.0" maxWidth="1100.0" minHeight="500.0" minWidth="500.0" BorderPane.alignment="CENTER">
                <center>
-                  <GridPane alignment="BASELINE_LEFT" gridLinesVisible="true" styleClass="calendar-cell" stylesheets="@Calendario.css" BorderPane.alignment="CENTER">
+                  <GridPane alignment="BASELINE_LEFT" gridLinesVisible="true" scaleShape="false" styleClass="calendar-cell" stylesheets="@Calendario.css" BorderPane.alignment="CENTER">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" prefWidth="100.0" />

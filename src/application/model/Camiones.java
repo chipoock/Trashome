@@ -4,19 +4,16 @@ import java.util.Scanner;
 
 public class Camiones {
 	
-	private String matriculaCamion;
-	private String typeBus, zonaAsignada, empleadoManejo;
+	private String matriculaCamion,typeBus, zonaAsignada;
+	private int idEmployee;
 	
 	//----------CONSTRUCTOR----------
-	public Camiones(String matriculaCamion, String typeBus, String empleadoManejo, String zonaAsignada ) {
-		String matriculaCam = matriculaCamion.toUpperCase();
+	public Camiones(String matriculaCamion, String typeBus, String zonaAsignada, int idEmployee ) {
 		
-		typeBus = "Organico";
-		setMatriculaCamion(matriculaCam);
+		setMatriculaCamion(matriculaCamion);
 		setTypeBus(typeBus);
-		
-		this.empleadoManejo = empleadoManejo;
-		this.zonaAsignada = zonaAsignada;
+		setZonaAsignda(zonaAsignada);
+		setIdEmployee(idEmployee);
 		
 		
 				
@@ -29,7 +26,7 @@ public class Camiones {
 	
 	//--------------- METODOS MatriculaCamion Get y Set -----------------
 	
-	private final String getMatriculaCamion(){
+	public final String getMatriculaCamion(){
 		
 		return matriculaCamion;
 		
@@ -38,7 +35,10 @@ public class Camiones {
 	
 	// Este setter hace una validacion para saber si deja entrar la matricula al constructor.
 	
-	private void setMatriculaCamion(String matriculaCamion){
+	public void setMatriculaCamion(String matriculaCamion){
+		
+		matriculaCamion = matriculaCamion.toUpperCase();
+
 		int contador = matriculaCamion.length();
 		
 		if(contador == 7 || contador == 6) {
@@ -56,14 +56,14 @@ public class Camiones {
 	//--------------- methods typeBus Get and Set -----------------
 	
 	
-	private final String getTypeBus() {
+	public final String getTypeBus() {
 		
 		return typeBus;
 	}
 	
 	
 	
-	private void setTypeBus(String typeBus){
+	public void setTypeBus(String typeBus){
 		
 		
 		switch(typeBus) {
@@ -80,6 +80,37 @@ public class Camiones {
 		}
 		
 	}
+	
+	
+	public String getZonaAsignada() {
+		
+		return zonaAsignada;
+	}
+	
+	
+	public void setZonaAsignda(String zonaAsignada) {
+		
+		this.zonaAsignada = zonaAsignada;
+		
+		
+	} 
+	
+	
+	public int getIdEmployee() {
+		
+		return idEmployee;
+	}
+	
+	
+	public void setIdEmployee(int idEmployee) {
+		
+		this.idEmployee = idEmployee;
+		
+		
+	} 
+	
+	
+	
 	
 	
 
