@@ -49,6 +49,7 @@ public abstract class Users {
 	    this.email = email;
 	    this.phone = phone;
 	    this.password = password;
+	    this.address = address;
 	}
 
 	public String getName() {
