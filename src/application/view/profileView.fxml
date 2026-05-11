@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="817.0" style="-fx-background-color: #0B161E; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="817.0" style="-fx-background-color: #0B161E; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ProfileController">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0">
          <children>
@@ -103,10 +103,10 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="86.0" prefWidth="387.0">
                            <children>
-                              <Button fx:id="btn_editar_cuenta" alignment="CENTER" mnemonicParsing="false" styleClass="boton-estilo" stylesheets="@CrearCamion.css" text="Editar Cuenta" />
+                              <Button fx:id="btn_editar_cuenta" alignment="CENTER" mnemonicParsing="false" styleClass="boton-estilo" stylesheets="@CrearCamion.css" text="Editar Cuenta" onAction="#editar_cuenta" />
                            </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="372.0">
+                        <VBox fx:id="vbox_edicion" prefHeight="200.0" prefWidth="372.0">
                            <children>
                               <Label text="Selecciona la informacion que deseas cambiar" textFill="WHITE" />
                               <ComboBox fx:id="ComboBox_opciones" onAction="#comboBox_opciones" prefHeight="18.0" prefWidth="142.0" />
@@ -114,7 +114,7 @@
                               <TextField fx:id="txt_nuevosDatos" onAction="#txt_nuevo_valor" prefHeight="25.0" prefWidth="295.0" />
                               <VBox alignment="CENTER" prefHeight="114.0" prefWidth="387.0">
                                  <children>
-                                    <Button fx:id="btn_guardarCambios" mnemonicParsing="false" text="Guardar" />
+                                    <Button fx:id="btn_guardarCambios" mnemonicParsing="false" text="Guardar" onAction="#guardar_cambios" />
                                  </children>
                               </VBox>
                            </children>
