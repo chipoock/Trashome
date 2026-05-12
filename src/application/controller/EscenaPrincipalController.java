@@ -12,18 +12,18 @@ public class EscenaPrincipalController {
 
     @FXML
     public void initialize() {
-        cargarVista("CreateRoute.fxml"); 
+        cargarVista("CreateRoute.fxml");
     }
 
     private void cargarVista(String archivo) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/" + archivo) );
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/" + archivo));
 
             Parent vista = loader.load();
 
             vista.maxWidth(Double.MAX_VALUE);
             vista.maxHeight(Double.MAX_VALUE);
-            
+
             System.out.println("Cargando: " + archivo);
 
             contenedorPrincipal.setCenter(vista);
@@ -33,10 +33,9 @@ public class EscenaPrincipalController {
         }
     }
 
-    
     @FXML
     private void abrirPerfil() {
-        cargarVista("Perfil.fxml");
+        cargarVista("profileView.fxml");
     }
 
     @FXML
@@ -61,13 +60,12 @@ public class EscenaPrincipalController {
 
     @FXML
     private void abrirReportes() {
-        cargarVista("Reportes.fxml");
+        cargarVista("reportesView.fxml");
     }
 
     @FXML
     private void abrirCreditos() {
         cargarVista("Creditos.fxml");
     }
-    
-}
 
+}

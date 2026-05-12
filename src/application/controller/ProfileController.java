@@ -15,7 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImagePattern;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
@@ -42,7 +42,7 @@ public class ProfileController {
 	@FXML
 	private TextField txt_nuevosDatos;
 	@FXML
-	private Button btn_guardar;
+	private Button btn_guardarCambios;
 	@FXML
 	private Button btn_editar_cuenta;
 	@FXML
