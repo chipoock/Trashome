@@ -71,9 +71,23 @@ public class RegistroEmpleadoController {
     @FXML
     public void initialize() {
         // Inicializar DAO
-        ConexionSQL conexionSQL = new ConexionSQL();
-        Connection conexion = conexionSQL.conectar();
-        employeeDao = new EmployeeDaoImpl(conexion);
+        try {
+            ConexionSQL conexionSQL = new ConexionSQL();
+            Connection conexion = conexionSQL.conectar();
+            
+            if (conexion == null) {
+                System.out.println("No se pudo establecer conexión con la base de datos.");
+                // No llamamos a cargarEmpleados si no hay conexión para evitar el crash
+                employeeDao = new EmployeeDaoImpl(null);
+            } else {
+                employeeDao = new EmployeeDaoImpl(conexion);
+                // Solo cargamos si hay conexión
+                cargarEmpleados();
+            }
+        } catch (Exception e) {
+            System.out.println("Error durante la inicialización: " + e.getMessage());
+            e.printStackTrace();
+        }
 
         // Inicializar ComboBox
         cbCargo.setItems(FXCollections.observableArrayList("Conductor", "Empleado General"));
@@ -91,9 +105,6 @@ public class RegistroEmpleadoController {
                 return new SimpleStringProperty("Empleado General");
             }
         });
-
-        // Cargar datos
-        cargarEmpleados();
 
         // Listener para seleccionar empleado en la tabla
         tablaEmpleados.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -130,11 +141,10 @@ public class RegistroEmpleadoController {
             Employee empleado;
             LocalDate fechaActual = LocalDate.now();
             if (cargo.equals("Conductor")) {
-                empleado = new Conductor(nombre, edad, id, cp, correo, telefono, password, direccion, fechaActual, 0,
+                empleado = new Conductor(nombre, edad, id, cp, correo, telefono, password, direccion, fechaActual,
                         null);
             } else {
-                empleado = new GeneralEmployee(nombre, edad, id, cp, correo, telefono, password, direccion, fechaActual,
-                        0.0);
+                empleado = new GeneralEmployee(nombre, edad, id, cp, correo, telefono, password, direccion, fechaActual);
             }
 
             if (modoEdicion) {

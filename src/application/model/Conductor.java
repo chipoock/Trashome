@@ -6,8 +6,8 @@ public class Conductor extends Employee {
 	private Camiones camionAsignado;
 
 	public Conductor(String name, int age, int idUser, int CP, String email, String phone, String password, String address,
-			LocalDate hiringDate, int salary, Camiones camionAsignado) {
-		super(name, age, idUser, CP, email, phone, password, address, hiringDate, salary);
+			LocalDate hiringDate, Camiones camionAsignado) {
+		super(name, age, idUser, CP, email, phone, password, address, hiringDate);
         
 
         setCamionAsignado(camionAsignado);
@@ -18,9 +18,6 @@ public class Conductor extends Employee {
 	}
 
 	public void setCamionAsignado(Camiones camionAsignado) {
-		if(camionAsignado == null) {
-			throw new IllegalArgumentException("Todos los conductores deben tener un camion asignado");
-		}
 		this.camionAsignado = camionAsignado;
 	}
 }
