@@ -9,6 +9,7 @@ import application.model.ClienteDao;
 import application.model.ClientDaoImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -58,7 +59,7 @@ public class ProfileController {
 			vbox_edicion.setVisible(false);
 
 			// Configurar imagen del círculo
-			Image defaultImage = new Image("file:Resource/MingcuteProfileFill.png");
+			Image defaultImage = new Image("imagenporDefecto.png");
 			circle_profile.setFill(new ImagePattern(defaultImage));
 			Tooltip.install(circle_profile, new Tooltip("click para cambiar imagen"));
 
@@ -101,6 +102,18 @@ public class ProfileController {
 
 		if (opcion == null || nuevoDato == null || nuevoDato.trim().isEmpty()) {
 			return; // No hacer nada si no hay opción o datos
+		}
+
+		if (opcion.equals("Email")) {
+			if (!nuevoDato.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+				mostrarAlerta("Correo Electrónico Inválido", "Por favor, introduzca un correo electrónico válido (ejemplo: usuario@correo.com).");
+				return;
+			}
+		} else if (opcion.equals("Numero de telefono")) {
+			if (!nuevoDato.matches("\\d{10}")) {
+				mostrarAlerta("Número de Teléfono Inválido", "Por favor, introduzca un número de teléfono válido de 10 dígitos.");
+				return;
+			}
 		}
 
 		// Actualizamos los labels en la interfaz
@@ -147,5 +160,13 @@ public class ProfileController {
 	@FXML
 	public void txt_nuevo_valor(ActionEvent event) {
 		// Método invocado al dar enter en el TextField si es necesario
+	}
+
+	private void mostrarAlerta(String titulo, String mensaje) {
+		Alert alerta = new Alert(Alert.AlertType.ERROR);
+		alerta.setTitle(titulo);
+		alerta.setHeaderText(null);
+		alerta.setContentText(mensaje);
+		alerta.showAndWait();
 	}
 }

@@ -20,13 +20,6 @@
 		<nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>Resource/ChatGPT Image 9 may 2026, 08_24_46.png</name>
-			<type>1</type>
-			<location>C:/Users/toño/Downloads/ChatGPT Image 9 may 2026, 08_24_46.png</location>
-		</link>
-	</linkedResources>
 	<filteredResources>
 		<filter>
 			<id>1777590384785</id>

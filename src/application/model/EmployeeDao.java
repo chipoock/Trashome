@@ -6,4 +6,6 @@ public interface EmployeeDao {
 	void eliminarEmpleado(Employee employee);
 	
 	void actualizarEmpleado(Employee employee);
+	
+	java.util.List<Employee> obtenerEmpleados();
 }
