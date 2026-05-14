@@ -1,35 +1,7 @@
 /* Botón estilo Uiverse adaptado a JavaFX */
 
 
-.boton-pro {
-    -fx-background-color:  #2E5D4D;
-    -fx-text-fill: white;
 
-    -fx-font-family: "Montserrat";
-    -fx-font-size: 14px;
-
-    -fx-background-radius: 5;
-    -fx-border-radius: 5;
-
-
-
-}
-
-/* Hover */
-.boton-pro:hover {
-    -fx-background-color: #2E5D4D;
-    -fx-text-fill: #e4ebf0;
-
-    -fx-scale-x: 0.97;
-    -fx-scale-y: 0.97;
-}
-
-/* Click */
-.boton-pro:pressed {
-	-fx-background-color: #265242;
-    -fx-scale-x: 0.90;
-    -fx-scale-y: 0.90;
-}
 
 
 
@@ -40,13 +12,32 @@
     -fx-font-weight: bold Italic;
 
     -fx-font-family: "Montserrat";
-    -fx-font-size: 14px;
+    -fx-font-size: 16px;
 
 
 
 
 }
 
+
+.textInfo{
+	
+	 -fx-background-color:  transparent ;
+    -fx-text-fill: white;
+    -fx-font-weight: bold Italic;
+
+    -fx-font-family: "Montserrat";
+    -fx-font-size: 12px;
+
+
+	
+}
+.textNum{
+	
+	    -fx-text-fill: black;
+	
+	
+}
 
 
 
@@ -70,26 +61,226 @@
 
 
 
+.botonOrganico {
+    -fx-background-color:  #2E5D4D;
+    -fx-text-fill: white;
+
+    -fx-font-family: "Montserrat";
+    -fx-font-size: 16px;
+    -fx-font-weight: bold ;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
 
 
 
-
-
-
-.evento-organico{
-    -fx-background-color: #2E5D4D;
-}
-
-.evento-reciclable{
-    -fx-background-color: #624621;
-}
-
-.evento-inorganico{
-    -fx-background-color: #414049;
 }
 
 
+.botonOrganico:hover{
+	
+	
+ -fx-background-color: #30594C;
+    -fx-text-fill: #e4ebf0;
+
+}
+.botonOrganico:hover .text{
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+
+}
+
+
+.botonOrganico:pressed{
+	
+     -fx-background-color: #2E5448;
+    
+}
+
+.botonOrganico:pressed .text{
+	
+     -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+}
+
+.botonOrganico .text {
+    -fx-effect: dropshadow(gaussian, black, 2, 0.0, 1, 1);
+}
 
 
 
 
+
+
+
+
+
+
+
+
+
+.botonReciclable {
+    -fx-background-color:  #486B85;
+    -fx-text-fill: white;
+
+    -fx-font-family: "Montserrat";
+    -fx-font-size: 16px;
+    -fx-font-weight: bold ;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+
+
+
+}
+
+
+.botonReciclable:hover{
+	
+	
+ -fx-background-color: #547287;
+    -fx-text-fill: #e4ebf0;
+
+}
+
+
+
+
+.botonReciclable:pressed{
+	
+     -fx-background-color: #516D81;
+    
+}
+
+
+.botonReciclable .text {
+    -fx-effect: dropshadow(gaussian, black, 2, 0.0, 1, 1);
+}
+
+
+
+.botonReciclable:hover .text{
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+
+}
+
+
+.botonReciclable:pressed .text{
+	
+     -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+}
+
+
+
+
+
+
+
+
+.botonInorganico {
+    -fx-background-color:  #4E4E55;
+    -fx-text-fill: white;
+
+    -fx-font-family: "Montserrat";
+    -fx-font-size: 16px;
+    -fx-font-weight: bold ;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+
+
+
+}
+
+.botonInorganico .text {
+    -fx-effect: dropshadow(gaussian, black, 2, 0.0, 1, 1);
+}
+
+.botonInorganico:hover{
+	
+	
+ -fx-background-color: #56565E;
+    -fx-text-fill: #e4ebf0;
+
+}
+
+
+
+
+.botonInorganico:pressed{
+	
+     -fx-background-color: #4E4E57;
+    
+}
+
+
+.botonInorganico:hover .text{
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+
+}
+
+
+
+.botonInorganico:pressed .text{
+	
+     -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #202427;
+    -fx-background-radius: 10;
+}
+
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #2B3034;
+}
+
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: #324E59;
+    -fx-background-radius: 10;
+}
+
+.scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: #324E59;
+}
+
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .track {
+    -fx-background-color: rgba(255,255,255,0.08);
+    -fx-background-radius: 10;
+}

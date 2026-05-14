@@ -3,16 +3,16 @@ package application.model;
 import java.util.ArrayList;
 
 public class Route {
+	
+	private int codigoPostal, codigoRuta;
+	private String tipoAsentamiento, municipio, nomRuta, frecuencia;
+	private String nomAsentamiento = "NULL";
 
-	private int codigoPostal;
-	private String tipoAsentamiento, municipio, nomRuta, nomAsentamiento, frecuencia;
 	private static ArrayList<String> calles = new ArrayList<>();
 
-	private ArrayList<String> callesCons = new ArrayList<>();
-
-	public Route(int codigoPostal, String tipoAsentamiento, String municipio, String nomRuta, String nomAsentamiento,
-			String frecuencia, ArrayList<String> callesCons) {
-
+	
+	public Route (int codigoPostal, String tipoAsentamiento, String municipio , String nomRuta, String nomAsentamiento, String frecuencia, ArrayList<String> callesCons ) {
+		
 		setCodigoPostal(codigoPostal);
 		setTipoAsentamiento(tipoAsentamiento);
 		setMunicipio(municipio);
@@ -30,11 +30,11 @@ public class Route {
 		System.out.println("Calles: " + callesCons);
 
 	}
-
-	public final int getCodigoPostal() {
-
-		return codigoPostal;
-
+	
+	public int getCodigoPostal() {
+		
+		return codigoPostal;	
+		
 	}
 
 	// Geters & Seters Codigo Postal
@@ -115,26 +115,28 @@ public class Route {
 
 	}
 
-	// Geters & Seters FRECUENCIA
-
-	public String getFrecuencia() {
-
-		return frecuencia;
-
-	}
-
-	public void setFrecuencia(String frecuencia) {
-
-		this.frecuencia = frecuencia;
-
-	}
-
-	// Geters & Seters calles
-
-	public ArrayList<String> getcalles() {
-
-		return callesCons;
-
+	
+		public String getFrecuencia() {
+			
+			return frecuencia;
+			
+		}
+		
+		
+		public void setFrecuencia(String frecuencia) {
+			
+			this.frecuencia = frecuencia;
+		
+		}
+	
+	
+	//Geters & Seters calles
+	
+	
+	public ArrayList<String> getCalles() {
+		
+		return calles;
+		
 	}
 
 	public void setCallesCons(ArrayList<String> callesCons) {
@@ -146,18 +148,25 @@ public class Route {
 
 	// AGREGAR CALLES
 
-	public static ArrayList<String> AgregarCalle(String calle) {
-
-		if (!calle.equals("")) {
-
-			calles.add(calle);
-
-		} else {
-			System.out.println("Calles no puedo estar vacio");
-		}
-
+	
+	
+	//AGREGAR CALLES
+	
+	public static ArrayList<String> AgregarCalle (String calle) {
+		
+		if(!calle.equals("")) {
+		
+		calles.add(calle);
+    	 		
+		
+		} else {System.out.println("Calles no puede estar vacio");}
+		
+		
 		return calles;
 
+		
+		
+		
 	}
 
 	public static String BorrarCalle() {
@@ -173,5 +182,32 @@ public class Route {
 
 		calles.clear();
 	}
-
+	
+	
+	//CODIGO RUTA
+	
+	public int getCodigoRuta() {
+		
+		
+		return codigoRuta;
+	}
+	
+	public void setCodigoRuta(int codigoRuta) {
+		
+		
+		this.codigoRuta = codigoRuta;
+	}
+	
+	
+	public void GeneradorCodigoRuta() {
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
 }
