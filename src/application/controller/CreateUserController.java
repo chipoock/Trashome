@@ -70,15 +70,9 @@ public class CreateUserController {
             String telephone = txt_Telephone.getText();
             String password = txt_Password.getText();
 
-            // 2. Conexión
-            Connection con = new ConexionSQL().conectar();
-            if (con == null) {
-                return;
-            }
-
             // 3. Crear objeto y guardar
             Client cliente = new Client(name, age, 0, cp, email, telephone, password, addres);
-            ClienteDao clientedao = new ClientDaoImpl(con);
+            ClienteDao clientedao = new ClientDaoImpl();
 
             clientedao.guardarCliente(cliente);
 

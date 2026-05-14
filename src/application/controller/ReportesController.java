@@ -74,20 +74,16 @@ public class ReportesController implements Initializable {
     private void cargarHistorial() {
         listaReportes.clear();
         try {
-            Connection con = new ConexionSQL().conectar();
-            if (con != null) {
-                ReporteDao reporteDao = new ReporteDaoImpl(con);
-                List<Reporte> historial;
-                
-                if (esEmpleado) {
-                    historial = reporteDao.obtenerHistorialEmpleado(usuarioIdActual);
-                } else {
-                    historial = reporteDao.obtenerHistorialUsuario(usuarioIdActual);
-                }
-                
-                listaReportes.addAll(historial);
-                con.close();
+            ReporteDao reporteDao = new ReporteDaoImpl();
+            List<Reporte> historial;
+            
+            if (esEmpleado) {
+                historial = reporteDao.obtenerHistorialEmpleado(usuarioIdActual);
+            } else {
+                historial = reporteDao.obtenerHistorialUsuario(usuarioIdActual);
             }
+            
+            listaReportes.addAll(historial);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error al cargar historial de reportes.");
@@ -109,27 +105,22 @@ public class ReportesController implements Initializable {
         nuevoReporte.setDescripcionReporte(descripcion);
 
         try {
-            Connection con = new ConexionSQL().conectar();
-            if (con != null) {
-                ReporteDao reporteDao = new ReporteDaoImpl(con);
-                
-                if (esEmpleado) {
-                    nuevoReporte.setIdEmpleadoReporte(usuarioIdActual);
-                    reporteDao.crearReporteEmpleado(nuevoReporte);
-                } else {
-                    nuevoReporte.setIdUsuario(usuarioIdActual);
-                    reporteDao.crearReporteUsuario(nuevoReporte);
-                }
-
-                con.close();
-                
-                mostrarAlerta("Éxito", "El reporte ha sido enviado correctamente.");
-                
-                // Limpiar campos y recargar historial
-                combo_tipoReporte.setValue(null);
-                txt_descripcion.clear();
-                cargarHistorial();
+            ReporteDao reporteDao = new ReporteDaoImpl();
+            
+            if (esEmpleado) {
+                nuevoReporte.setIdEmpleadoReporte(usuarioIdActual);
+                reporteDao.crearReporteEmpleado(nuevoReporte);
+            } else {
+                nuevoReporte.setIdUsuario(usuarioIdActual);
+                reporteDao.crearReporteUsuario(nuevoReporte);
             }
+
+            mostrarAlerta("Éxito", "El reporte ha sido enviado correctamente.");
+            
+            // Limpiar campos y recargar historial
+            combo_tipoReporte.setValue(null);
+            txt_descripcion.clear();
+            cargarHistorial();
         } catch (Exception e) {
             e.printStackTrace();
             mostrarAlerta("Error", "Ocurrió un error al guardar el reporte.");
