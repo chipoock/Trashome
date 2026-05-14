@@ -6,27 +6,25 @@ import java.sql.SQLException;
 
 public class EmployeeDaoImpl implements EmployeeDao {
 
-    private Connection conexion;
+    private ConexionSQL cn = new ConexionSQL();
 
-    public EmployeeDaoImpl(Connection conexion) {
-        this.conexion = conexion;
+    public EmployeeDaoImpl() {
     }
 
     public void guardarEmpleado(Employee employee) {
-        if (conexion == null) {
-            System.out.println("Error: Conexión a BD es nula");
-            return;
-        }
         String sql = "INSERT INTO empleados (IdEmpleado, nombre, edad, puesto, correoElectronico, contrasena, numTelefono, codigoPostal, direccionDom) VALUES (?,?,?,?,?,?,?,?,?)";
 
-        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+        try (Connection conexion = cn.conectar();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+            if (conexion == null) return;
+            
             ps.setInt(1, employee.getIdUser());
             ps.setString(2, employee.getName());
             ps.setInt(3, employee.getAge());
-            ps.setString(4, employee.getClass().getSimpleName()); // Se usa el nombre de la clase como puesto
+            ps.setString(4, employee.getClass().getSimpleName());
             ps.setString(5, employee.getEmail());
             ps.setString(6, employee.getPassword());
-            ps.setString(7, employee.getPhone()); // Se manda como String, MySQL maneja la conversión si el número cabe
+            ps.setString(7, employee.getPhone());
             ps.setInt(8, employee.getCP());
             ps.setString(9, employee.getAddress());
 
@@ -38,13 +36,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     public void eliminarEmpleado(Employee employee) {
-        if (conexion == null) {
-            System.out.println("Error: Conexión a BD es nula");
-            return;
-        }
         String sql = "DELETE FROM empleados WHERE IdEmpleado = ?";
 
-        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+        try (Connection conexion = cn.conectar();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+            if (conexion == null) return;
+
             ps.setInt(1, employee.getIdUser());
             ps.executeUpdate();
 
@@ -54,16 +51,15 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     public void actualizarEmpleado(Employee employee) {
-        if (conexion == null) {
-            System.out.println("Error: Conexión a BD es nula");
-            return;
-        }
         String sql = "UPDATE empleados SET nombre = ?, edad = ?, puesto = ?, correoElectronico = ?, contrasena = ?, numTelefono = ?, codigoPostal = ?, direccionDom = ? WHERE IdEmpleado = ?";
 
-        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+        try (Connection conexion = cn.conectar();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+            if (conexion == null) return;
+
             ps.setString(1, employee.getName());
             ps.setInt(2, employee.getAge());
-            ps.setString(3, employee.getClass().getSimpleName()); // Se usa el nombre de la clase como puesto
+            ps.setString(3, employee.getClass().getSimpleName());
             ps.setString(4, employee.getEmail());
             ps.setString(5, employee.getPassword());
             ps.setString(6, employee.getPhone());
@@ -80,14 +76,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     public java.util.List<Employee> obtenerEmpleados() {
         java.util.List<Employee> empleados = new java.util.ArrayList<>();
-        if (conexion == null) {
-            System.out.println("Error: Conexión a BD es nula");
-            return empleados;
-        }
         String sql = "SELECT IdEmpleado, nombre, edad, puesto, correoElectronico, contrasena, numTelefono, codigoPostal, direccionDom FROM empleados";
 
-        try (java.sql.PreparedStatement ps = conexion.prepareStatement(sql);
+        try (Connection conexion = cn.conectar();
+             PreparedStatement ps = conexion.prepareStatement(sql);
              java.sql.ResultSet rs = ps.executeQuery()) {
+            if (conexion == null) return empleados;
 
             while (rs.next()) {
                 int idUser = rs.getInt("IdEmpleado");
@@ -100,7 +94,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 int cp = rs.getInt("codigoPostal");
                 String address = rs.getString("direccionDom");
 
-                // Asignar valores por defecto para campos no presentes en la tabla (si los hubiera)
                 java.time.LocalDate hiringDate = java.time.LocalDate.now();
 
                 Employee emp;
@@ -121,13 +114,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     @Override
     public Employee buscarPorEmail(String email) {
-        if (conexion == null) {
-            System.out.println("Error: Conexión a BD es nula");
-            return null;
-        }
         String sql = "SELECT IdEmpleado, nombre, edad, puesto, correoElectronico, contrasena, numTelefono, codigoPostal, direccionDom FROM empleados WHERE correoElectronico = ?";
 
-        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+        try (Connection conexion = cn.conectar();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+            if (conexion == null) return null;
+
             ps.setString(1, email);
             try (java.sql.ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
@@ -158,13 +150,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     @Override
     public Employee buscarPorId(int id) {
-        if (conexion == null) {
-            System.out.println("Error: Conexión a BD es nula");
-            return null;
-        }
         String sql = "SELECT IdEmpleado, nombre, edad, puesto, correoElectronico, contrasena, numTelefono, codigoPostal, direccionDom FROM empleados WHERE IdEmpleado = ?";
 
-        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+        try (Connection conexion = cn.conectar();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+            if (conexion == null) return null;
+
             ps.setInt(1, id);
             try (java.sql.ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {

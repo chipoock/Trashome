@@ -8,18 +8,18 @@ import java.sql.SQLException;
 
 public class ClientDaoImpl implements ClienteDao {
 
-    private Connection conexion;
+    private ConexionSQL cn = new ConexionSQL();
 
-    public ClientDaoImpl(Connection conexion) {
-        this.conexion = conexion;
+    public ClientDaoImpl() {
     }
 
     @Override
     public void guardarCliente(Client cliente) {
-
         String sql = "INSERT INTO usuarios (IdUsuario, nombre, edad, correoElectronico, contrasena, numTelefono, codigoPostal, direccionDom) VALUES (?,?,?,?,?,?,?,?)";
 
-        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+        try (Connection conexion = cn.conectar();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+            if (conexion == null) return;
 
             ps.setInt(1, cliente.getIdUser());
             ps.setString(2, cliente.getName());
@@ -39,10 +39,11 @@ public class ClientDaoImpl implements ClienteDao {
 
     @Override
     public void actualizarCliente(Client cliente) {
-
         String sql = "UPDATE usuarios SET nombre = ?, edad = ?, correoElectronico = ?, contrasena = ?, numTelefono = ?, codigoPostal = ?, direccionDom = ? WHERE IdUsuario = ?";
 
-        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+        try (Connection conexion = cn.conectar();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+            if (conexion == null) return;
 
             ps.setString(1, cliente.getName());
             ps.setInt(2, cliente.getAge());
@@ -62,13 +63,13 @@ public class ClientDaoImpl implements ClienteDao {
 
     @Override
     public void eliminarCliente(int idUser) {
-
         String sql = "DELETE FROM usuarios WHERE IdUsuario = ?";
 
-        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+        try (Connection conexion = cn.conectar();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+            if (conexion == null) return;
 
             ps.setInt(1, idUser);
-
             ps.executeUpdate();
 
         } catch (SQLException e) {
@@ -78,101 +79,88 @@ public class ClientDaoImpl implements ClienteDao {
 
     @Override
     public Client buscarPorId(int idUser) {
-
         String sql = "SELECT * FROM usuarios WHERE IdUsuario = ?";
         Client cliente = null;
 
-        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+        try (Connection conexion = cn.conectar();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+            if (conexion == null) return null;
 
             ps.setInt(1, idUser);
-
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-
-                cliente = new Client();
-
-                cliente.setidUser(rs.getInt("IdUsuario"));
-                cliente.setName(rs.getString("nombre"));
-                cliente.setAge(rs.getInt("edad"));
-                cliente.setEmail(rs.getString("correoElectronico"));
-                cliente.setPassword(rs.getString("contrasena"));
-                cliente.setPhone(rs.getString("numTelefono"));
-                cliente.setCP(rs.getInt("codigoPostal"));
-                cliente.setAddress(rs.getString("direccionDom"));
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    cliente = new Client();
+                    cliente.setidUser(rs.getInt("IdUsuario"));
+                    cliente.setName(rs.getString("nombre"));
+                    cliente.setAge(rs.getInt("edad"));
+                    cliente.setEmail(rs.getString("correoElectronico"));
+                    cliente.setPassword(rs.getString("contrasena"));
+                    cliente.setPhone(rs.getString("numTelefono"));
+                    cliente.setCP(rs.getInt("codigoPostal"));
+                    cliente.setAddress(rs.getString("direccionDom"));
+                }
             }
-
         } catch (SQLException e) {
             System.out.println("Error al acceder a la base de datos " + e);
         }
-
         return cliente;
     }
 
     @Override
     public Client inicioDeSesion(String email) {
-
         String sql = "SELECT * FROM usuarios WHERE correoElectronico = ?";
         Client cliente = null;
 
-        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+        try (Connection conexion = cn.conectar();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+            if (conexion == null) return null;
 
             ps.setString(1, email);
-
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-
-                cliente = new Client();
-
-                cliente.setidUser(rs.getInt("IdUsuario"));
-                cliente.setName(rs.getString("nombre"));
-                cliente.setAge(rs.getInt("edad"));
-                cliente.setEmail(rs.getString("correoElectronico"));
-                cliente.setPassword(rs.getString("contrasena"));
-                cliente.setPhone(rs.getString("numTelefono"));
-                cliente.setCP(rs.getInt("codigoPostal"));
-                cliente.setAddress(rs.getString("direccionDom"));
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    cliente = new Client();
+                    cliente.setidUser(rs.getInt("IdUsuario"));
+                    cliente.setName(rs.getString("nombre"));
+                    cliente.setAge(rs.getInt("edad"));
+                    cliente.setEmail(rs.getString("correoElectronico"));
+                    cliente.setPassword(rs.getString("contrasena"));
+                    cliente.setPhone(rs.getString("numTelefono"));
+                    cliente.setCP(rs.getInt("codigoPostal"));
+                    cliente.setAddress(rs.getString("direccionDom"));
+                }
             }
-
         } catch (SQLException e) {
             System.out.println("Error al buscar por email: " + e);
         }
-
         return cliente;
     }
     
     @Override
     public Client inicioDeSesionId(int idUser) {
-    	
     	String sql = "SELECT * FROM usuarios WHERE IdUsuario = ?";
     	Client cliente = null;
     	
-    	try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+    	try (Connection conexion = cn.conectar();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+            if (conexion == null) return null;
 
             ps.setInt(1, idUser);
-
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-
-                cliente = new Client();
-
-                cliente.setidUser(rs.getInt("IdUsuario"));
-                cliente.setName(rs.getString("nombre"));
-                cliente.setAge(rs.getInt("edad"));
-                cliente.setEmail(rs.getString("correoElectronico"));
-                cliente.setPassword(rs.getString("contrasena"));
-                cliente.setPhone(rs.getString("numTelefono"));
-                cliente.setCP(rs.getInt("codigoPostal"));
-                cliente.setAddress(rs.getString("direccionDom"));
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    cliente = new Client();
+                    cliente.setidUser(rs.getInt("IdUsuario"));
+                    cliente.setName(rs.getString("nombre"));
+                    cliente.setAge(rs.getInt("edad"));
+                    cliente.setEmail(rs.getString("correoElectronico"));
+                    cliente.setPassword(rs.getString("contrasena"));
+                    cliente.setPhone(rs.getString("numTelefono"));
+                    cliente.setCP(rs.getInt("codigoPostal"));
+                    cliente.setAddress(rs.getString("direccionDom"));
+                }
             }
-
         } catch (SQLException e) {
-            System.out.println("Error al buscar por email: " + e);
+            System.out.println("Error al buscar por ID: " + e);
         }
-    	
     	return cliente;
-    	
     }
 }

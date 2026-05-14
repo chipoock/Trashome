@@ -38,13 +38,7 @@ public class loginTeamController {
 		String id = txt_id.getText();
 		String password = txt_Password.getText();
 
-		Connection con = new ConexionSQL().conectar();
-		if (con == null) {
-			lbl_mensaje.setText("Error: Sin conexión a la base de datos");
-			return;
-		}
-
-		EmployeeDao employeeDao = new EmployeeDaoImpl(con);
+		EmployeeDao employeeDao = new EmployeeDaoImpl();
 		Employee employee = null;
 		
 		try {

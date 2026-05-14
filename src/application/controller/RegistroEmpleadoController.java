@@ -71,23 +71,10 @@ public class RegistroEmpleadoController {
     @FXML
     public void initialize() {
         // Inicializar DAO
-        try {
-            ConexionSQL conexionSQL = new ConexionSQL();
-            Connection conexion = conexionSQL.conectar();
-            
-            if (conexion == null) {
-                System.out.println("No se pudo establecer conexión con la base de datos.");
-                // No llamamos a cargarEmpleados si no hay conexión para evitar el crash
-                employeeDao = new EmployeeDaoImpl(null);
-            } else {
-                employeeDao = new EmployeeDaoImpl(conexion);
-                // Solo cargamos si hay conexión
-                cargarEmpleados();
-            }
-        } catch (Exception e) {
-            System.out.println("Error durante la inicialización: " + e.getMessage());
-            e.printStackTrace();
-        }
+        employeeDao = new EmployeeDaoImpl();
+        
+        // Solo cargamos si el DAO está listo (ahora se conecta solo)
+        cargarEmpleados();
 
         // Inicializar ComboBox
         cbCargo.setItems(FXCollections.observableArrayList("Conductor", "Empleado General"));

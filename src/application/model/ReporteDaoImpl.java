@@ -10,10 +10,9 @@ import java.util.List;
 
 public class ReporteDaoImpl implements ReporteDao {
 
-    private Connection conexion;
+    private ConexionSQL cn = new ConexionSQL();
 
-    public ReporteDaoImpl(Connection conexion) {
-        this.conexion = conexion;
+    public ReporteDaoImpl() {
     }
 
     @Override
@@ -21,7 +20,8 @@ public class ReporteDaoImpl implements ReporteDao {
         String sqlPrincipal = "INSERT INTO reportes (tipoReporte, descripcionReporte) VALUES (?, ?)";
         String sqlDetalle = "INSERT INTO repus (CodigoReporte, IdUsuario, estadoReporte) VALUES (?, ?, ?)";
 
-        try {
+        try (Connection conexion = cn.conectar()) {
+            if (conexion == null) return;
             conexion.setAutoCommit(false);
 
             // 1. Insertar en tabla principal
@@ -30,10 +30,11 @@ public class ReporteDaoImpl implements ReporteDao {
                 ps.setString(2, reporte.getDescripcionReporte());
                 ps.executeUpdate();
 
-                ResultSet rs = ps.getGeneratedKeys();
-                if (rs.next()) {
-                    int idGenerado = rs.getInt(1);
-                    reporte.setCodigoReporte(idGenerado);
+                try (ResultSet rs = ps.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        int idGenerado = rs.getInt(1);
+                        reporte.setCodigoReporte(idGenerado);
+                    }
                 }
             }
 
@@ -46,20 +47,10 @@ public class ReporteDaoImpl implements ReporteDao {
             }
 
             conexion.commit();
+            conexion.setAutoCommit(true);
 
         } catch (SQLException e) {
-            try {
-                conexion.rollback();
-            } catch (SQLException ex) {
-                System.out.println("Error al hacer rollback: " + ex);
-            }
             System.out.println("Error al guardar el reporte de usuario: " + e);
-        } finally {
-            try {
-                conexion.setAutoCommit(true);
-            } catch (SQLException e) {
-                System.out.println("Error al restablecer autocommit: " + e);
-            }
         }
     }
 
@@ -68,7 +59,8 @@ public class ReporteDaoImpl implements ReporteDao {
         String sqlPrincipal = "INSERT INTO reportes (tipoReporte, descripcionReporte) VALUES (?, ?)";
         String sqlDetalle = "INSERT INTO repemp (CodigoReporte, IdEmpleadoReporte, estadoReporte) VALUES (?, ?, ?)";
 
-        try {
+        try (Connection conexion = cn.conectar()) {
+            if (conexion == null) return;
             conexion.setAutoCommit(false);
 
             // 1. Insertar en tabla principal
@@ -77,10 +69,11 @@ public class ReporteDaoImpl implements ReporteDao {
                 ps.setString(2, reporte.getDescripcionReporte());
                 ps.executeUpdate();
 
-                ResultSet rs = ps.getGeneratedKeys();
-                if (rs.next()) {
-                    int idGenerado = rs.getInt(1);
-                    reporte.setCodigoReporte(idGenerado);
+                try (ResultSet rs = ps.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        int idGenerado = rs.getInt(1);
+                        reporte.setCodigoReporte(idGenerado);
+                    }
                 }
             }
 
@@ -93,20 +86,10 @@ public class ReporteDaoImpl implements ReporteDao {
             }
 
             conexion.commit();
+            conexion.setAutoCommit(true);
 
         } catch (SQLException e) {
-            try {
-                conexion.rollback();
-            } catch (SQLException ex) {
-                System.out.println("Error al hacer rollback: " + ex);
-            }
             System.out.println("Error al guardar el reporte de empleado: " + e);
-        } finally {
-            try {
-                conexion.setAutoCommit(true);
-            } catch (SQLException e) {
-                System.out.println("Error al restablecer autocommit: " + e);
-            }
         }
     }
 
@@ -120,31 +103,33 @@ public class ReporteDaoImpl implements ReporteDao {
                      "WHERE u.IdUsuario = ? " +
                      "ORDER BY r.fechaCreacion DESC";
 
-        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+        try (Connection conexion = cn.conectar();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+            if (conexion == null) return lista;
+
             ps.setInt(1, idUsuario);
-            ResultSet rs = ps.executeQuery();
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Reporte reporte = new Reporte();
+                    reporte.setCodigoReporte(rs.getInt("CodigoReporte"));
+                    reporte.setTipoReporte(rs.getString("tipoReporte"));
+                    reporte.setDescripcionReporte(rs.getString("descripcionReporte"));
+                    reporte.setFechaCreacion(rs.getTimestamp("fechaCreacion"));
+                    reporte.setIdUsuario(rs.getInt("IdUsuario"));
+                    
+                    int idAtencion = rs.getInt("IdEmpleadoAtencion");
+                    if (!rs.wasNull()) reporte.setIdEmpleadoAtencion(idAtencion);
+                    
+                    reporte.setEstadoReporte(rs.getString("estadoReporte"));
+                    reporte.setComentario(rs.getString("comentario"));
+                    reporte.setFechaAtendido(rs.getTimestamp("fechaAtendido"));
 
-            while (rs.next()) {
-                Reporte reporte = new Reporte();
-                reporte.setCodigoReporte(rs.getInt("CodigoReporte"));
-                reporte.setTipoReporte(rs.getString("tipoReporte"));
-                reporte.setDescripcionReporte(rs.getString("descripcionReporte"));
-                reporte.setFechaCreacion(rs.getTimestamp("fechaCreacion"));
-                reporte.setIdUsuario(rs.getInt("IdUsuario"));
-                
-                int idAtencion = rs.getInt("IdEmpleadoAtencion");
-                if (!rs.wasNull()) reporte.setIdEmpleadoAtencion(idAtencion);
-                
-                reporte.setEstadoReporte(rs.getString("estadoReporte"));
-                reporte.setComentario(rs.getString("comentario"));
-                reporte.setFechaAtendido(rs.getTimestamp("fechaAtendido"));
-
-                lista.add(reporte);
+                    lista.add(reporte);
+                }
             }
         } catch (SQLException e) {
             System.out.println("Error al obtener historial de usuario: " + e);
         }
-
         return lista;
     }
 
@@ -158,31 +143,33 @@ public class ReporteDaoImpl implements ReporteDao {
                      "WHERE e.IdEmpleadoReporte = ? " +
                      "ORDER BY r.fechaCreacion DESC";
 
-        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+        try (Connection conexion = cn.conectar();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+            if (conexion == null) return lista;
+
             ps.setInt(1, idEmpleado);
-            ResultSet rs = ps.executeQuery();
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Reporte reporte = new Reporte();
+                    reporte.setCodigoReporte(rs.getInt("CodigoReporte"));
+                    reporte.setTipoReporte(rs.getString("tipoReporte"));
+                    reporte.setDescripcionReporte(rs.getString("descripcionReporte"));
+                    reporte.setFechaCreacion(rs.getTimestamp("fechaCreacion"));
+                    reporte.setIdEmpleadoReporte(rs.getInt("IdEmpleadoReporte"));
+                    
+                    int idAtencion = rs.getInt("IdEmpleadoAtencion");
+                    if (!rs.wasNull()) reporte.setIdEmpleadoAtencion(idAtencion);
+                    
+                    reporte.setEstadoReporte(rs.getString("estadoReporte"));
+                    reporte.setComentario(rs.getString("comentario"));
+                    reporte.setFechaAtendido(rs.getTimestamp("fechaAtendido"));
 
-            while (rs.next()) {
-                Reporte reporte = new Reporte();
-                reporte.setCodigoReporte(rs.getInt("CodigoReporte"));
-                reporte.setTipoReporte(rs.getString("tipoReporte"));
-                reporte.setDescripcionReporte(rs.getString("descripcionReporte"));
-                reporte.setFechaCreacion(rs.getTimestamp("fechaCreacion"));
-                reporte.setIdEmpleadoReporte(rs.getInt("IdEmpleadoReporte"));
-                
-                int idAtencion = rs.getInt("IdEmpleadoAtencion");
-                if (!rs.wasNull()) reporte.setIdEmpleadoAtencion(idAtencion);
-                
-                reporte.setEstadoReporte(rs.getString("estadoReporte"));
-                reporte.setComentario(rs.getString("comentario"));
-                reporte.setFechaAtendido(rs.getTimestamp("fechaAtendido"));
-
-                lista.add(reporte);
+                    lista.add(reporte);
+                }
             }
         } catch (SQLException e) {
             System.out.println("Error al obtener historial de empleado: " + e);
         }
-
         return lista;
     }
 }

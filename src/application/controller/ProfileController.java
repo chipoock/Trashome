@@ -66,21 +66,14 @@ public class ProfileController {
 			// Evento para cambiar la imagen
 			circle_profile.setOnMouseClicked(event -> cambiar_imagen());
 
-			// 1. Creamos la conexión
-			Connection con = new ConexionSQL().conectar();
+			ClienteDao clientedao = new ClientDaoImpl();
+			Client clienteLogueado = clientedao.buscarPorId(1);
 
-			if (con != null) {
-				ClienteDao clientedao = new ClientDaoImpl(con);
-				Client clienteLogueado = clientedao.buscarPorId(1);
-
-				if (clienteLogueado != null) {
-					lbl_name.setText(clienteLogueado.getName());
-					lbl_email.setText(clienteLogueado.getEmail());
-					lbl_telephone.setText(clienteLogueado.getPhone());
-					lbl_addres.setText(clienteLogueado.getAddress());
-				}
-			} else {
-				System.out.println("Error: La conexión es nula");
+			if (clienteLogueado != null) {
+				lbl_name.setText(clienteLogueado.getName());
+				lbl_email.setText(clienteLogueado.getEmail());
+				lbl_telephone.setText(clienteLogueado.getPhone());
+				lbl_addres.setText(clienteLogueado.getAddress());
 			}
 
 		} catch (Exception e) {
