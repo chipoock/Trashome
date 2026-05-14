@@ -190,28 +190,35 @@ public class RouteDao {
 		    return listaNombres;
 		}
 		
-		public List<String> ValidarRuta(){
-			
-			
-			String codigoPostalSQL = "SELECT codigoPostal FROM empleados WHERE IdEmpleado = ?";
-			
-			pst = conn.prepareStatement(codigoPostalSQL);
-			pst.setInt(1, idEmpleado);
-			rs = pst.executeQuery();
+	
+		// OBTENER NOMBRE DE RUTA
 
-			if(rs.next()){
-				   int cp = rs.getInt("codigoPostal");
+		public String obtenerNombreRuta(int codigoRuta) {
 
-				   
-			String sql = "SELECT calles FROM rutas WHERE rutaNombre = 'EL Carmen'";
-			
-		
-		
+		    String sql = "SELECT rutaNombre FROM rutas WHERE CodigoRuta = ?";
+
+		    try {
+
+		        conn = cn.conectar();
+		        pst = conn.prepareStatement(sql);
+		        pst.setInt(1, codigoRuta);
+
+		        rs = pst.executeQuery();
+
+		        if(rs.next()) {
+
+		            return rs.getString("rutaNombre");
+
+		        }
+
+		    } catch(Exception e) {
+
+		        e.printStackTrace();
+
+		    }
+
+		    return "";
 		}
-		
-		
-		
-		
 
 
 }
