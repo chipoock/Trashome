@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.sql.Connection;
 
 import application.model.ConexionSQL;
-import application.model.Client;
-import application.model.ClientDaoImpl;
-import application.model.ClienteDao;
+import application.model.Employee;
+import application.model.EmployeeDao;
+import application.model.EmployeeDaoImpl;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -38,19 +38,21 @@ public class loginTeamController {
 		String id = txt_id.getText();
 		String password = txt_Password.getText();
 
-		Connection con = new ConexionSQL().conectar();
-		if (con == null) {
-			lbl_mensaje.setText("Error: Sin conexión a la base de datos");
+		EmployeeDao employeeDao = new EmployeeDaoImpl();
+		Employee employee = null;
+		
+		try {
+			int idInt = Integer.parseInt(id);
+			employee = employeeDao.buscarPorId(idInt);
+		} catch (NumberFormatException e) {
+			lbl_mensaje.setText("El ID debe ser un número");
 			return;
 		}
 
-		ClienteDao clienteDao = new ClientDaoImpl(con);
-		Client cliente = clienteDao.inicioDeSesion(id);
-
-		if (cliente == null) {
-			lbl_mensaje.setText("El correo no existe");
+		if (employee == null) {
+			lbl_mensaje.setText("El empleado no existe");
 		} else {
-			if (password.equals(cliente.getPassword())) {
+			if (password.equals(employee.getPassword())) {
 				try {
 					FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/CreateRoute.fxml"));
 					Parent root = loader.load();
