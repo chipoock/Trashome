@@ -7,6 +7,7 @@ import application.model.ConexionSQL;
 import application.model.Client;
 import application.model.ClienteDao;
 import application.model.ClientDaoImpl;
+import application.model.UserSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -66,14 +67,14 @@ public class ProfileController {
 			// Evento para cambiar la imagen
 			circle_profile.setOnMouseClicked(event -> cambiar_imagen());
 
-			ClienteDao clientedao = new ClientDaoImpl();
-			Client clienteLogueado = clientedao.buscarPorId(1);
+			Client clienteLogueado = UserSession.getInstance().getClient();
 
 			if (clienteLogueado != null) {
 				lbl_name.setText(clienteLogueado.getName());
 				lbl_email.setText(clienteLogueado.getEmail());
 				lbl_telephone.setText(clienteLogueado.getPhone());
 				lbl_addres.setText(clienteLogueado.getAddress());
+				lbl_id.setText(String.valueOf(clienteLogueado.getIdUser()));
 			}
 
 		} catch (Exception e) {
