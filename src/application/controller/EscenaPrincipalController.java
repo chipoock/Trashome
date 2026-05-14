@@ -45,8 +45,8 @@ public class EscenaPrincipalController {
     }
 
     @FXML
-    private void abrirTrabajo() {
-        cargarVista("RegistroEmpleado.fxml");
+    private void abrirInicioRuta() {
+        cargarVista("inicioViaje.fxml");
     }
 
     @FXML
@@ -67,6 +67,12 @@ public class EscenaPrincipalController {
     @FXML
     private void abrirCreditos() {
         cargarVista("Creditos.fxml");
+    }
+    @FXML
+    private void abrirEmpleado() {
+        cargarVista("empleados.fxml");
+
+    	
     }
     
 }

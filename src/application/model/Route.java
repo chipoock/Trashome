@@ -4,14 +4,16 @@ import java.util.ArrayList;
 
 public class Route {
 	
-	private int codigoPostal;
-	private String tipoAsentamiento, municipio, nomRuta, nomAsentamiento, frecuencia;
+	private int codigoPostal, codigoRuta;
+	private String tipoAsentamiento, municipio, nomRuta, frecuencia;
+	private String nomAsentamiento = "NULL";
+
 	private static ArrayList<String> calles = new ArrayList<>();
 	
 	private  ArrayList<String> callesCons = new ArrayList<>();
 
 	
-	public Route (int codigoPostal, String tipoAsentamiento, String municipio , String nomRuta, String nomAsentamiento, String frecuencia, ArrayList<String> callesCons) {
+	public Route (int codigoPostal, String tipoAsentamiento, String municipio , String nomRuta, String nomAsentamiento, String frecuencia, ArrayList<String> callesCons ) {
 		
 		setCodigoPostal(codigoPostal);
 		setTipoAsentamiento(tipoAsentamiento);
@@ -32,7 +34,7 @@ public class Route {
 		
 	}
 	
-	public final int getCodigoPostal() {
+	public int getCodigoPostal() {
 		
 		return codigoPostal;	
 		
@@ -160,9 +162,9 @@ public class Route {
 	//Geters & Seters calles
 	
 	
-	public ArrayList<String> getcalles() {
+	public ArrayList<String> getCalles() {
 		
-		return callesCons;
+		return calles;
 		
 	}
 	
@@ -188,15 +190,15 @@ public class Route {
 		
 		calles.add(calle);
     	 		
-	
-
 		
-		} else {System.out.println("Calles no puedo estar vacio");}
-		
+		} else {System.out.println("Calles no puede estar vacio");}
 		
 		
 		return calles;
 
+		
+		
+		
 	}
 	
 	public static String BorrarCalle() {
@@ -212,6 +214,32 @@ public class Route {
 	public static void resetCallesArray() {
 		
 		calles.clear();
+	}
+	
+	
+	//CODIGO RUTA
+	
+	public int getCodigoRuta() {
+		
+		
+		return codigoRuta;
+	}
+	
+	public void setCodigoRuta(int codigoRuta) {
+		
+		
+		this.codigoRuta = codigoRuta;
+	}
+	
+	
+	public void GeneradorCodigoRuta() {
+		
+		
+		
+		
+		
+		
+		
 	}
 	
 	

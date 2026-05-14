@@ -4,19 +4,22 @@ import java.util.Scanner;
 
 public class Camiones {
 	
-	private String matriculaCamion,typeBus, zonaAsignada;
-	private int idEmployee;
+	private String matriculaCamion,typeBus;
+	private int idEmployee, zonaAsignada;
 	
 	//----------CONSTRUCTOR----------
-	public Camiones(String matriculaCamion, String typeBus, String zonaAsignada, int idEmployee ) {
+	public Camiones(String matriculaCamion, String typeBus, int zonaAsignada, int idEmployee ) {
 		
 		setMatriculaCamion(matriculaCamion);
 		setTypeBus(typeBus);
 		setZonaAsignda(zonaAsignada);
 		setIdEmployee(idEmployee);
 		
-		
-				
+		System.out.println(matriculaCamion);
+		System.out.println(typeBus);
+		System.out.println(zonaAsignada);
+		System.out.println(idEmployee);
+
 		
 		
 	}
@@ -43,7 +46,6 @@ public class Camiones {
 		
 		if(contador == 7 || contador == 6) {
 			this.matriculaCamion = matriculaCamion;
-			System.out.print("Se a agregado correctamente");
 
 		} else {throw new IllegalArgumentException("La Matricula tiene que tener de 6 a 7 - digitos Intentalo de nuevo."); }		
 		
@@ -82,13 +84,13 @@ public class Camiones {
 	}
 	
 	
-	public String getZonaAsignada() {
+	public int getZonaAsignada() {
 		
 		return zonaAsignada;
 	}
 	
 	
-	public void setZonaAsignda(String zonaAsignada) {
+	public void setZonaAsignda(int zonaAsignada) {
 		
 		this.zonaAsignada = zonaAsignada;
 		

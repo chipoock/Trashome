@@ -2,6 +2,8 @@ package application.controller;
 
 import javafx.fxml.FXML;
 import application.model.Route;
+import application.model.RouteDao;
+
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.net.URL;
@@ -49,8 +51,7 @@ public class CreateRouteController implements Initializable {
 	    typeAs.setValue("Colonia");
 	    
 	    
-	    asentamientoBox.getItems().addAll("Mediana", "Alta");
-	    asentamientoBox.setValue("Mediana");
+	    asentamientoBox.getItems().addAll(nomAsentamiento);
 	    
 	    
 	    
@@ -78,11 +79,9 @@ public class CreateRouteController implements Initializable {
 
     	ArrayList<String> view = Route.AgregarCalle(calle);
     	
-		String calleS = view.toString();
 
     	vistaCalles.setWrapText(true);
-        vistaCalles.setText("Calles Agregadas: " + calleS );
-
+    	vistaCalles.setText("Calles Agregadas: " + String.join(", ", view));
     	
     
     	calleText.clear();
@@ -124,7 +123,8 @@ public class CreateRouteController implements Initializable {
    @FXML
    private TextField municipio;
    
-   
+   @FXML
+   public ArrayList<String> nomAsentamiento = new ArrayList<String>();
  
 
    
@@ -149,6 +149,13 @@ public class CreateRouteController implements Initializable {
 	   
 	   Route Ruta = new Route(cPostal, asentamiento, municipioM, nombreRuta, nomAsentamiento, tipoFrecuencia, calles);
 	   
+	   System.out.println("Entró al botón Guardar");
+	   RouteDao dao = new RouteDao();
+	   System.out.println("DAO creado");
+	   
+	   
+	   boolean ok = dao.registroRuta(Ruta);
+	   System.out.println("Resultado: " + ok);
 	   
 	   nomRuta.clear();
 	   CP.clear();
