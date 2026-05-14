@@ -12,8 +12,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
         this.conexion = conexion;
     }
 
-    @Override
     public void guardarEmpleado(Employee employee) {
+        if (conexion == null) {
+            System.out.println("Error: Conexión a BD es nula");
+            return;
+        }
         String sql = "INSERT INTO empleados (IdEmpleado, nombre, edad, puesto, correoElectronico, contrasena, numTelefono, codigoPostal, direccionDom) VALUES (?,?,?,?,?,?,?,?,?)";
 
         try (PreparedStatement ps = conexion.prepareStatement(sql)) {
@@ -34,8 +37,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
         }
     }
 
-    @Override
     public void eliminarEmpleado(Employee employee) {
+        if (conexion == null) {
+            System.out.println("Error: Conexión a BD es nula");
+            return;
+        }
         String sql = "DELETE FROM empleados WHERE IdEmpleado = ?";
 
         try (PreparedStatement ps = conexion.prepareStatement(sql)) {
@@ -47,8 +53,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
         }
     }
 
-    @Override
     public void actualizarEmpleado(Employee employee) {
+        if (conexion == null) {
+            System.out.println("Error: Conexión a BD es nula");
+            return;
+        }
         String sql = "UPDATE empleados SET nombre = ?, edad = ?, puesto = ?, correoElectronico = ?, contrasena = ?, numTelefono = ?, codigoPostal = ?, direccionDom = ? WHERE IdEmpleado = ?";
 
         try (PreparedStatement ps = conexion.prepareStatement(sql)) {
@@ -69,9 +78,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
         }
     }
 
-    @Override
     public java.util.List<Employee> obtenerEmpleados() {
         java.util.List<Employee> empleados = new java.util.ArrayList<>();
+        if (conexion == null) {
+            System.out.println("Error: Conexión a BD es nula");
+            return empleados;
+        }
         String sql = "SELECT IdEmpleado, nombre, edad, puesto, correoElectronico, contrasena, numTelefono, codigoPostal, direccionDom FROM empleados";
 
         try (java.sql.PreparedStatement ps = conexion.prepareStatement(sql);
@@ -90,13 +102,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
                 // Asignar valores por defecto para campos no presentes en la tabla (si los hubiera)
                 java.time.LocalDate hiringDate = java.time.LocalDate.now();
-                double salary = 0.0;
 
                 Employee emp;
                 if ("Conductor".equalsIgnoreCase(puesto)) {
-                    emp = new Conductor(name, age, idUser, cp, email, phone, password, address, hiringDate, (int)salary, null);
+                    emp = new Conductor(name, age, idUser, cp, email, phone, password, address, hiringDate, null);
                 } else {
-                    emp = new GeneralEmployee(name, age, idUser, cp, email, phone, password, address, hiringDate, salary);
+                    emp = new GeneralEmployee(name, age, idUser, cp, email, phone, password, address, hiringDate);
                 }
                 empleados.add(emp);
             }
