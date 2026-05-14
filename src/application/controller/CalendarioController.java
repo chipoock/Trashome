@@ -3,6 +3,7 @@ package application.controller;
 import java.util.ArrayList;
 import application.model.Calendario;
 import application.model.RouteDao;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -43,6 +44,8 @@ public class CalendarioController {
 
 	@FXML
 	public void initialize(){
+		
+
 		
 		Calendario cal = new Calendario();
 		
@@ -94,7 +97,8 @@ public class CalendarioController {
 		    scrollInfo.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 		    scrollInfo.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
 		
-		
+		    System.out.println("nombreEmpleado = " + nombreEmpleado);
+
 	
 		}
 	
@@ -157,14 +161,17 @@ public class CalendarioController {
 	BorderPane fondoInfo;
 	
 	@FXML
-	Label horarioLabel,nomRutaLabel,InformacionLabel,tituloLabel ;
+	Label horarioLabel,nomRutaLabel,InformacionLabel,tituloLabel, nombreEmpleado, nomMatricula ;
 	
 	
 	@FXML
 	ImageView residuos1,residuos2,residuos3,residuos4,residuos5;
 	
+	
+	
+	
 	@FXML 
-	public void OrganicoDatos() {
+	public void OrganicoDatos(ActionEvent event) {
 		
 	String horario;
 	
@@ -189,6 +196,81 @@ public class CalendarioController {
     
     
     tituloLabel.setText(lunes);
+    
+    
+    Button boton = (Button) event.getSource();
+
+    String id = boton.getId();
+
+
+    
+    switch(id) {
+    
+
+    case "button8":
+    	
+    	String nombre = "  Isaac de Jesus Rivas Garcia";
+    	
+    	
+    	String matricula = "   4814FJG";
+
+    	
+    	nombreEmpleado.setText(nombre);	
+    	
+    	nomMatricula.setText(matricula);
+    	
+    	break;
+    	
+    case "button15":
+    	
+    	nombre = "  Joshua David Delgado Lopez";
+    	
+    	
+    	 matricula = "   4814FJG";
+
+    	
+    	nombreEmpleado.setText(nombre);	
+    	
+    	nomMatricula.setText(matricula);
+    	
+    	break;
+    case "button22":
+    	
+    	 nombre = "  Aide Guadalupe Michel Manriquez";
+    	
+    	
+    	 matricula = "   8913NCF";
+
+    	
+    	nombreEmpleado.setText(nombre);	
+    	
+    	nomMatricula.setText(matricula);
+    	
+    	break;
+    
+    case "button29":
+    	
+    	nombre = "  Aide Guadalupe Michel Manriquez";
+    	
+    	
+        matricula = "   4814FJG";
+
+    	
+    	nombreEmpleado.setText(nombre);	
+    	
+    	nomMatricula.setText(matricula);
+    	
+    	break;
+    
+    
+    
+    }	
+    	
+    
+    
+    
+    
+    
     
     
     
@@ -242,7 +324,7 @@ public class CalendarioController {
 	
 	
 	@FXML 
-	public void ReciclableDatos() {
+	public void ReciclableDatos(ActionEvent event) {
 		
 	String horario;
 	
@@ -268,6 +350,56 @@ public class CalendarioController {
     
     
     tituloLabel.setText(lunes);
+    
+    
+    
+    
+
+    Button boton = (Button) event.getSource();
+
+    String id = boton.getId();
+
+
+    
+    switch(id) {
+    
+
+    case "button12":
+    	
+    	String nombre = "  Ricardo Méndez Ortiz";
+    	
+    	
+    	String matricula = "   8060HDJ";
+
+    	
+    	nombreEmpleado.setText(nombre);	
+    	
+    	nomMatricula.setText(matricula);
+    	
+    	break;
+    	
+    case "button26":
+    	
+    	nombre = "  Ricardo Méndez Ortiz";
+    	
+    	
+    	 matricula = "   8060HDJ";
+
+    	
+    	nombreEmpleado.setText(nombre);	
+    	
+    	nomMatricula.setText(matricula);
+    	
+    	break;
+   
+    
+   
+    
+    
+    }	
+    	
+    
+    
     
     
     
@@ -338,7 +470,7 @@ public class CalendarioController {
 
 	
 	@FXML 
-	public void InorganicoDatos() {
+	public void InorganicoDatos(ActionEvent event) {
 		
 	String horario;
 	
@@ -364,6 +496,71 @@ public class CalendarioController {
     
     
     tituloLabel.setText(lunes);
+    
+    
+    
+    
+    
+
+    Button boton = (Button) event.getSource();
+
+    String id = boton.getId();
+
+
+    
+    switch(id) {
+    
+
+    case "button5":
+    	
+    	String nombre = "  Mónica Leticia Carrillo";
+    	
+    	
+    	String matricula = "   4046BMM";
+
+    	
+    	nombreEmpleado.setText(nombre);	
+    	
+    	nomMatricula.setText(matricula);
+    	
+    	break;
+    	
+    case "button19":
+    	
+    	nombre = "  Joshua David Delgado Lopez";
+    	
+    	
+    	 matricula = "   3395GKC";
+
+    	
+    	nombreEmpleado.setText(nombre);	
+    	
+    	nomMatricula.setText(matricula);
+    	
+    	break;
+    case "button33":
+    	
+    	 nombre = "  Gabriela Monserrat Soto";
+    	
+    	
+    	 matricula = "   5828HHB";
+
+    	
+    	nombreEmpleado.setText(nombre);	
+    	
+    	nomMatricula.setText(matricula);
+    	
+    	break;
+    
+  
+    
+    
+    
+    }	
+    	
+    
+    
+    
     
     
     

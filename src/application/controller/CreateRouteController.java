@@ -51,7 +51,6 @@ public class CreateRouteController implements Initializable {
 	    typeAs.setValue("Colonia");
 	    
 	    
-	    asentamientoBox.getItems().addAll(nomAsentamiento);
 	    
 	    
 	    
@@ -111,8 +110,7 @@ public class CreateRouteController implements Initializable {
    @FXML 
    private ComboBox<String> typeAs;
    
-   @FXML 
-   private ComboBox<String> asentamientoBox;
+    
    
    @FXML
    private TextField nomRuta;
@@ -142,7 +140,7 @@ public class CreateRouteController implements Initializable {
 	   
 	   String municipioM = municipio.getText();
 	   
-	   String nomAsentamiento = asentamientoBox.getValue();
+	   String nomAsentamiento = "";
 
 	   
 		ArrayList<String> calles = SumarCalles();

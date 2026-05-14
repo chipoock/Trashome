@@ -69,26 +69,6 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="45.0" prefWidth="252.0" style="-fx-background-color: transparent;" styleClass="mi-hbox" stylesheets="@bottonPrincipal.css">
                <children>
-                  <ImageView fitHeight="32.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../Resource/GisFlagStartB.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="25.0" right="2.0" top="5.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#abrirInicioRuta" prefHeight="45.0" prefWidth="205.0" styleClass="boton-pro" stylesheets="@bottonPrincipal.css" text="Iniciar Ruta">
-                     <HBox.margin>
-                        <Insets left="3.0" right="3.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-               <VBox.margin>
-                  <Insets bottom="30.0" />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="45.0" prefWidth="252.0" style="-fx-background-color: transparent;" styleClass="mi-hbox" stylesheets="@bottonPrincipal.css">
-               <children>
                   <ImageView fitHeight="33.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../Resource/ZmdiAccountsAdd.png" />

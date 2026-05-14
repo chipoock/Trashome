@@ -54,7 +54,7 @@ public class loginTeamController {
 		} else {
 			if (password.equals(employee.getPassword())) {
 				try {
-					FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/CreateRoute.fxml"));
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/EscenaPrincipal.fxml"));
 					Parent root = loader.load();
 
 					Stage stage = (Stage) btn_login_Employee.getScene().getWindow();

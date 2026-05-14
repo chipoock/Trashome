@@ -1243,7 +1243,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </ImageView>
-                              <Label prefHeight="42.0" prefWidth="254.0" styleClass="textInfo" stylesheets="@Calendario.css" text="Label" />
+                              <Label fx:id="nombreEmpleado" prefHeight="42.0" prefWidth="254.0" styleClass="textInfo" stylesheets="@Calendario.css" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="45.0" top="30.0" />
@@ -1258,7 +1258,7 @@
                                     <Insets left="12.0" />
                                  </HBox.margin>
                               </ImageView>
-                              <Label fx:id="matriculaLabel" prefHeight="38.0" prefWidth="268.0" styleClass="textInfo" stylesheets="@Calendario.css" text="Label" />
+                              <Label fx:id="nomMatricula" prefHeight="38.0" prefWidth="268.0" styleClass="textInfo" stylesheets="@Calendario.css" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="45.0" />
@@ -1274,7 +1274,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </ImageView>
-                              <Label fx:id="horarioLabel" prefHeight="38.0" prefWidth="276.0" styleClass="textInfo" stylesheets="@Calendario.css" text="    7- 10 AM" />
+                              <Label fx:id="horarioLabel" prefHeight="38.0" prefWidth="276.0" styleClass="textInfo" stylesheets="@Calendario.css" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="45.0" />
@@ -1290,7 +1290,7 @@
                                     <Insets left="12.0" />
                                  </HBox.margin>
                               </ImageView>
-                              <Label fx:id="nomRutaLabel" prefHeight="38.0" prefWidth="268.0" styleClass="textInfo" stylesheets="@Calendario.css" text="Label" />
+                              <Label fx:id="nomRutaLabel" prefHeight="38.0" prefWidth="268.0" styleClass="textInfo" stylesheets="@Calendario.css" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="45.0" />

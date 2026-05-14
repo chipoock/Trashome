@@ -12,7 +12,7 @@ public class EscenaPrincipalController {
 
     @FXML
     public void initialize() {
-        cargarVista("CreateRoute.fxml");
+        cargarVista("Calendario.fxml");
     }
 
     private void cargarVista(String archivo) {
@@ -69,7 +69,7 @@ public class EscenaPrincipalController {
     }
     @FXML
     private void abrirEmpleado() {
-        cargarVista("empleados.fxml");
+        cargarVista("RegistroEmpleado.fxml");
 
     	
     }

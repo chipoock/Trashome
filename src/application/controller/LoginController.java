@@ -56,7 +56,7 @@ public class LoginController {
 		} else {
 			if (password.equals(cliente.getPassword())) {
 				try {
-					FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/CreateRoute.fxml"));
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/EscenaPrincipal.fxml"));
 					Parent root = loader.load();
 
 					Stage stage = (Stage) btn_Login.getScene().getWindow();

@@ -19,6 +19,14 @@ public class CamionesDao {
 	
    public boolean registroCamiones(Camiones crearCamion) {
 	   
+	   if(!ExisteEmpleado(crearCamion.getIdEmployee())) {
+
+		    JOptionPane.showMessageDialog(null,
+		        "Debe ingresar un código de empleado válido");
+
+		    return false;
+		}
+	   
 		String query = "INSERT INTO camiones (Matricula, Contenedor) VALUES (?, ?)";
 		
 		
@@ -72,12 +80,39 @@ public class CamionesDao {
 		}
 		return false;
 		
+   }
+		
+		
 
-	   
+		public boolean ExisteEmpleado(int idEmpleado) {
+
+		    String query = "SELECT IdEmpleado FROM empleados WHERE IdEmpleado = ?";
+
+		    try {
+
+		        conn = cn.conectar();
+
+		        pst = conn.prepareStatement(query);
+
+		        pst.setInt(1, idEmpleado);
+
+		        rs = pst.executeQuery();
+
+		        if(rs.next()) {
+		            return true;
+		        }
+
+		    } catch(SQLException e) {
+
+		        e.printStackTrace();
+
+		    }
+
+		    return false;
+		}
 	   
 	   
 	   
    }
 	
 	
-}

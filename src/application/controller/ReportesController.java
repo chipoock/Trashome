@@ -76,8 +76,8 @@ public class ReportesController implements Initializable {
         try {
             Connection con = new ConexionSQL().conectar();
             if (con != null) {
-                ReporteDao reporteDao = new ReporteDaoImpl(con);
-                List<Reporte> historial;
+            	ReporteDao reporteDao = new ReporteDaoImpl();
+            	List<Reporte> historial;
                 
                 if (esEmpleado) {
                     historial = reporteDao.obtenerHistorialEmpleado(usuarioIdActual);
@@ -111,8 +111,7 @@ public class ReportesController implements Initializable {
         try {
             Connection con = new ConexionSQL().conectar();
             if (con != null) {
-                ReporteDao reporteDao = new ReporteDaoImpl(con);
-                
+            	ReporteDao reporteDao = new ReporteDaoImpl();                
                 if (esEmpleado) {
                     nuevoReporte.setIdEmpleadoReporte(usuarioIdActual);
                     reporteDao.crearReporteEmpleado(nuevoReporte);
