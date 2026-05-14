@@ -69,7 +69,7 @@ public class EscenaPrincipalController {
     }
     @FXML
     private void abrirEmpleado() {
-        cargarVista("empleados.fxml");
+        cargarVista("RegistroEmpleado.fxml");
 
     	
     }
