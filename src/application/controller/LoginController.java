@@ -42,13 +42,7 @@ public class LoginController {
 		String email = txt_Correo.getText();
 		String password = txt_Password.getText();
 
-		Connection con = new ConexionSQL().conectar();
-		if (con == null) {
-			lbl_mensaje.setText("Error: Sin conexión a la base de datos");
-			return;
-		}
-
-		ClienteDao clienteDao = new ClientDaoImpl(con);
+		ClienteDao clienteDao = new ClientDaoImpl();
 		Client cliente = clienteDao.inicioDeSesion(email);
 
 		if (cliente == null) {

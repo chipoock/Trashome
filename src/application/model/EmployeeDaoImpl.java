@@ -78,33 +78,33 @@ public class EmployeeDaoImpl implements EmployeeDao {
         java.util.List<Employee> empleados = new java.util.ArrayList<>();
         String sql = "SELECT IdEmpleado, nombre, edad, puesto, correoElectronico, contrasena, numTelefono, codigoPostal, direccionDom FROM empleados";
 
-        try (Connection conexion = cn.conectar();
-             PreparedStatement ps = conexion.prepareStatement(sql);
-             java.sql.ResultSet rs = ps.executeQuery()) {
+        try (Connection conexion = cn.conectar()) {
             if (conexion == null) return empleados;
+            try (PreparedStatement ps = conexion.prepareStatement(sql);
+                 java.sql.ResultSet rs = ps.executeQuery()) {
 
-            while (rs.next()) {
-                int idUser = rs.getInt("IdEmpleado");
-                String name = rs.getString("nombre");
-                int age = rs.getInt("edad");
-                String puesto = rs.getString("puesto");
-                String email = rs.getString("correoElectronico");
-                String password = rs.getString("contrasena");
-                String phone = rs.getString("numTelefono");
-                int cp = rs.getInt("codigoPostal");
-                String address = rs.getString("direccionDom");
+                while (rs.next()) {
+                    int idUser = rs.getInt("IdEmpleado");
+                    String name = rs.getString("nombre");
+                    int age = rs.getInt("edad");
+                    String puesto = rs.getString("puesto");
+                    String email = rs.getString("correoElectronico");
+                    String password = rs.getString("contrasena");
+                    String phone = rs.getString("numTelefono");
+                    int cp = rs.getInt("codigoPostal");
+                    String address = rs.getString("direccionDom");
 
-                java.time.LocalDate hiringDate = java.time.LocalDate.now();
+                    java.time.LocalDate hiringDate = java.time.LocalDate.now();
 
-                Employee emp;
-                if ("Conductor".equalsIgnoreCase(puesto)) {
-                    emp = new Conductor(name, age, idUser, cp, email, phone, password, address, hiringDate, null);
-                } else {
-                    emp = new GeneralEmployee(name, age, idUser, cp, email, phone, password, address, hiringDate);
+                    Employee emp;
+                    if ("Conductor".equalsIgnoreCase(puesto)) {
+                        emp = new Conductor(name, age, idUser, cp, email, phone, password, address, hiringDate, null);
+                    } else {
+                        emp = new GeneralEmployee(name, age, idUser, cp, email, phone, password, address, hiringDate);
+                    }
+                    empleados.add(emp);
                 }
-                empleados.add(emp);
             }
-
         } catch (SQLException e) {
             System.out.println("Error al obtener empleados: " + e);
         }
@@ -116,29 +116,29 @@ public class EmployeeDaoImpl implements EmployeeDao {
     public Employee buscarPorEmail(String email) {
         String sql = "SELECT IdEmpleado, nombre, edad, puesto, correoElectronico, contrasena, numTelefono, codigoPostal, direccionDom FROM empleados WHERE correoElectronico = ?";
 
-        try (Connection conexion = cn.conectar();
-             PreparedStatement ps = conexion.prepareStatement(sql)) {
+        try (Connection conexion = cn.conectar()) {
             if (conexion == null) return null;
+            try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+                ps.setString(1, email);
+                try (java.sql.ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        int idUser = rs.getInt("IdEmpleado");
+                        String name = rs.getString("nombre");
+                        int age = rs.getInt("edad");
+                        String puesto = rs.getString("puesto");
+                        String foundEmail = rs.getString("correoElectronico");
+                        String password = rs.getString("contrasena");
+                        String phone = rs.getString("numTelefono");
+                        int cp = rs.getInt("codigoPostal");
+                        String address = rs.getString("direccionDom");
 
-            ps.setString(1, email);
-            try (java.sql.ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    int idUser = rs.getInt("IdEmpleado");
-                    String name = rs.getString("nombre");
-                    int age = rs.getInt("edad");
-                    String puesto = rs.getString("puesto");
-                    String foundEmail = rs.getString("correoElectronico");
-                    String password = rs.getString("contrasena");
-                    String phone = rs.getString("numTelefono");
-                    int cp = rs.getInt("codigoPostal");
-                    String address = rs.getString("direccionDom");
+                        java.time.LocalDate hiringDate = java.time.LocalDate.now();
 
-                    java.time.LocalDate hiringDate = java.time.LocalDate.now();
-
-                    if ("Conductor".equalsIgnoreCase(puesto)) {
-                        return new Conductor(name, age, idUser, cp, foundEmail, phone, password, address, hiringDate, null);
-                    } else {
-                        return new GeneralEmployee(name, age, idUser, cp, foundEmail, phone, password, address, hiringDate);
+                        if ("Conductor".equalsIgnoreCase(puesto)) {
+                            return new Conductor(name, age, idUser, cp, foundEmail, phone, password, address, hiringDate, null);
+                        } else {
+                            return new GeneralEmployee(name, age, idUser, cp, foundEmail, phone, password, address, hiringDate);
+                        }
                     }
                 }
             }
@@ -152,29 +152,29 @@ public class EmployeeDaoImpl implements EmployeeDao {
     public Employee buscarPorId(int id) {
         String sql = "SELECT IdEmpleado, nombre, edad, puesto, correoElectronico, contrasena, numTelefono, codigoPostal, direccionDom FROM empleados WHERE IdEmpleado = ?";
 
-        try (Connection conexion = cn.conectar();
-             PreparedStatement ps = conexion.prepareStatement(sql)) {
+        try (Connection conexion = cn.conectar()) {
             if (conexion == null) return null;
+            try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+                ps.setInt(1, id);
+                try (java.sql.ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        int idUser = rs.getInt("IdEmpleado");
+                        String name = rs.getString("nombre");
+                        int age = rs.getInt("edad");
+                        String puesto = rs.getString("puesto");
+                        String foundEmail = rs.getString("correoElectronico");
+                        String password = rs.getString("contrasena");
+                        String phone = rs.getString("numTelefono");
+                        int cp = rs.getInt("codigoPostal");
+                        String address = rs.getString("direccionDom");
 
-            ps.setInt(1, id);
-            try (java.sql.ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    int idUser = rs.getInt("IdEmpleado");
-                    String name = rs.getString("nombre");
-                    int age = rs.getInt("edad");
-                    String puesto = rs.getString("puesto");
-                    String foundEmail = rs.getString("correoElectronico");
-                    String password = rs.getString("contrasena");
-                    String phone = rs.getString("numTelefono");
-                    int cp = rs.getInt("codigoPostal");
-                    String address = rs.getString("direccionDom");
+                        java.time.LocalDate hiringDate = java.time.LocalDate.now();
 
-                    java.time.LocalDate hiringDate = java.time.LocalDate.now();
-
-                    if ("Conductor".equalsIgnoreCase(puesto)) {
-                        return new Conductor(name, age, idUser, cp, foundEmail, phone, password, address, hiringDate, null);
-                    } else {
-                        return new GeneralEmployee(name, age, idUser, cp, foundEmail, phone, password, address, hiringDate);
+                        if ("Conductor".equalsIgnoreCase(puesto)) {
+                            return new Conductor(name, age, idUser, cp, foundEmail, phone, password, address, hiringDate, null);
+                        } else {
+                            return new GeneralEmployee(name, age, idUser, cp, foundEmail, phone, password, address, hiringDate);
+                        }
                     }
                 }
             }

@@ -21,7 +21,8 @@ public class ReporteDaoImpl implements ReporteDao {
         String sqlDetalle = "INSERT INTO repus (CodigoReporte, IdUsuario, estadoReporte) VALUES (?, ?, ?)";
 
         try (Connection conexion = cn.conectar()) {
-            if (conexion == null) return;
+            if (conexion == null)
+                return;
             conexion.setAutoCommit(false);
 
             // 1. Insertar en tabla principal
@@ -60,7 +61,8 @@ public class ReporteDaoImpl implements ReporteDao {
         String sqlDetalle = "INSERT INTO repemp (CodigoReporte, IdEmpleadoReporte, estadoReporte) VALUES (?, ?, ?)";
 
         try (Connection conexion = cn.conectar()) {
-            if (conexion == null) return;
+            if (conexion == null)
+                return;
             conexion.setAutoCommit(false);
 
             // 1. Insertar en tabla principal
@@ -97,34 +99,36 @@ public class ReporteDaoImpl implements ReporteDao {
     public List<Reporte> obtenerHistorialUsuario(int idUsuario) {
         List<Reporte> lista = new ArrayList<>();
         String sql = "SELECT r.CodigoReporte, r.tipoReporte, r.descripcionReporte, r.fechaCreacion, " +
-                     "u.IdUsuario, u.IdEmpleadoAtencion, u.estadoReporte, u.comentario, u.fechaAtendido " +
-                     "FROM reportes r " +
-                     "INNER JOIN repus u ON r.CodigoReporte = u.CodigoReporte " +
-                     "WHERE u.IdUsuario = ? " +
-                     "ORDER BY r.fechaCreacion DESC";
+                "u.IdUsuario, u.IdEmpleadoAtencion, u.estadoReporte, u.comentario, u.fechaAtendido " +
+                "FROM reportes r " +
+                "INNER JOIN repus u ON r.CodigoReporte = u.CodigoReporte " +
+                "WHERE u.IdUsuario = ? " +
+                "ORDER BY r.fechaCreacion DESC";
 
-        try (Connection conexion = cn.conectar();
-             PreparedStatement ps = conexion.prepareStatement(sql)) {
-            if (conexion == null) return lista;
+        try (Connection conexion = cn.conectar()) {
+            if (conexion == null)
+                return lista;
+            try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+                ps.setInt(1, idUsuario);
+                try (ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        Reporte reporte = new Reporte();
+                        reporte.setCodigoReporte(rs.getInt("CodigoReporte"));
+                        reporte.setTipoReporte(rs.getString("tipoReporte"));
+                        reporte.setDescripcionReporte(rs.getString("descripcionReporte"));
+                        reporte.setFechaCreacion(rs.getTimestamp("fechaCreacion"));
+                        reporte.setIdUsuario(rs.getInt("IdUsuario"));
 
-            ps.setInt(1, idUsuario);
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    Reporte reporte = new Reporte();
-                    reporte.setCodigoReporte(rs.getInt("CodigoReporte"));
-                    reporte.setTipoReporte(rs.getString("tipoReporte"));
-                    reporte.setDescripcionReporte(rs.getString("descripcionReporte"));
-                    reporte.setFechaCreacion(rs.getTimestamp("fechaCreacion"));
-                    reporte.setIdUsuario(rs.getInt("IdUsuario"));
-                    
-                    int idAtencion = rs.getInt("IdEmpleadoAtencion");
-                    if (!rs.wasNull()) reporte.setIdEmpleadoAtencion(idAtencion);
-                    
-                    reporte.setEstadoReporte(rs.getString("estadoReporte"));
-                    reporte.setComentario(rs.getString("comentario"));
-                    reporte.setFechaAtendido(rs.getTimestamp("fechaAtendido"));
+                        int idAtencion = rs.getInt("IdEmpleadoAtencion");
+                        if (!rs.wasNull())
+                            reporte.setIdEmpleadoAtencion(idAtencion);
 
-                    lista.add(reporte);
+                        reporte.setEstadoReporte(rs.getString("estadoReporte"));
+                        reporte.setComentario(rs.getString("comentario"));
+                        reporte.setFechaAtendido(rs.getTimestamp("fechaAtendido"));
+
+                        lista.add(reporte);
+                    }
                 }
             }
         } catch (SQLException e) {
@@ -137,34 +141,36 @@ public class ReporteDaoImpl implements ReporteDao {
     public List<Reporte> obtenerHistorialEmpleado(int idEmpleado) {
         List<Reporte> lista = new ArrayList<>();
         String sql = "SELECT r.CodigoReporte, r.tipoReporte, r.descripcionReporte, r.fechaCreacion, " +
-                     "e.IdEmpleadoReporte, e.IdEmpleadoAtencion, e.estadoReporte, e.comentario, e.fechaAtendido " +
-                     "FROM reportes r " +
-                     "INNER JOIN repemp e ON r.CodigoReporte = e.CodigoReporte " +
-                     "WHERE e.IdEmpleadoReporte = ? " +
-                     "ORDER BY r.fechaCreacion DESC";
+                "e.IdEmpleadoReporte, e.IdEmpleadoAtencion, e.estadoReporte, e.comentario, e.fechaAtendido " +
+                "FROM reportes r " +
+                "INNER JOIN repemp e ON r.CodigoReporte = e.CodigoReporte " +
+                "WHERE e.IdEmpleadoReporte = ? " +
+                "ORDER BY r.fechaCreacion DESC";
 
-        try (Connection conexion = cn.conectar();
-             PreparedStatement ps = conexion.prepareStatement(sql)) {
-            if (conexion == null) return lista;
+        try (Connection conexion = cn.conectar()) {
+            if (conexion == null)
+                return lista;
+            try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+                ps.setInt(1, idEmpleado);
+                try (ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        Reporte reporte = new Reporte();
+                        reporte.setCodigoReporte(rs.getInt("CodigoReporte"));
+                        reporte.setTipoReporte(rs.getString("tipoReporte"));
+                        reporte.setDescripcionReporte(rs.getString("descripcionReporte"));
+                        reporte.setFechaCreacion(rs.getTimestamp("fechaCreacion"));
+                        reporte.setIdEmpleadoReporte(rs.getInt("IdEmpleadoReporte"));
 
-            ps.setInt(1, idEmpleado);
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    Reporte reporte = new Reporte();
-                    reporte.setCodigoReporte(rs.getInt("CodigoReporte"));
-                    reporte.setTipoReporte(rs.getString("tipoReporte"));
-                    reporte.setDescripcionReporte(rs.getString("descripcionReporte"));
-                    reporte.setFechaCreacion(rs.getTimestamp("fechaCreacion"));
-                    reporte.setIdEmpleadoReporte(rs.getInt("IdEmpleadoReporte"));
-                    
-                    int idAtencion = rs.getInt("IdEmpleadoAtencion");
-                    if (!rs.wasNull()) reporte.setIdEmpleadoAtencion(idAtencion);
-                    
-                    reporte.setEstadoReporte(rs.getString("estadoReporte"));
-                    reporte.setComentario(rs.getString("comentario"));
-                    reporte.setFechaAtendido(rs.getTimestamp("fechaAtendido"));
+                        int idAtencion = rs.getInt("IdEmpleadoAtencion");
+                        if (!rs.wasNull())
+                            reporte.setIdEmpleadoAtencion(idAtencion);
 
-                    lista.add(reporte);
+                        reporte.setEstadoReporte(rs.getString("estadoReporte"));
+                        reporte.setComentario(rs.getString("comentario"));
+                        reporte.setFechaAtendido(rs.getTimestamp("fechaAtendido"));
+
+                        lista.add(reporte);
+                    }
                 }
             }
         } catch (SQLException e) {

@@ -88,6 +88,8 @@ public class ReportesController implements Initializable {
                 listaReportes.addAll(historial);
                 con.close();
             }
+            
+            listaReportes.addAll(historial);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error al cargar historial de reportes.");
@@ -129,6 +131,13 @@ public class ReportesController implements Initializable {
                 txt_descripcion.clear();
                 cargarHistorial();
             }
+
+            mostrarAlerta("Éxito", "El reporte ha sido enviado correctamente.");
+            
+            // Limpiar campos y recargar historial
+            combo_tipoReporte.setValue(null);
+            txt_descripcion.clear();
+            cargarHistorial();
         } catch (Exception e) {
             e.printStackTrace();
             mostrarAlerta("Error", "Ocurrió un error al guardar el reporte.");
