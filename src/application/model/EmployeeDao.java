@@ -8,4 +8,8 @@ public interface EmployeeDao {
 	void actualizarEmpleado(Employee employee);
 	
 	java.util.List<Employee> obtenerEmpleados();
+	
+	Employee buscarPorEmail(String email);
+	
+	Employee buscarPorId(int id);
 }
