@@ -44,6 +44,7 @@ public class ReportesController implements Initializable {
     private TableColumn<Reporte, String> colEstado;
     @FXML
     private TableColumn<Reporte, Timestamp> colFecha;
+    
 
     // TODO: Esto debería venir de la sesión del usuario logueado.
     // Por ahora usamos 1 tal como lo acordamos.
@@ -56,8 +57,10 @@ public class ReportesController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Inicializar ComboBox
-        combo_tipoReporte.getItems().addAll("Servicio no brindado", "Daño a contenedor", "Mala atención", "Otro");
-
+        combo_tipoReporte.getItems().addAll("La unidad correspondiente no paso el día indicado.", "La unidad si paso, pero no corresponde al día.", "La vivienda no realizó correctamente la separación de residuos correspondiente.",
+        		"El personal omitió el procedimiento adecuado de separación durante la recolección.","Se detectó mezcla de residuos orgánicos e inorgánicos durante la recolección.", "Otro");
+        combo_tipoReporte.setValue("Se detectó mezcla de residuos orgánicos e inorgánicos durante la recolección.");
+        
         // Configurar Columnas de la Tabla
         colCodigo.setCellValueFactory(new PropertyValueFactory<>("codigoReporte"));
         colTipo.setCellValueFactory(new PropertyValueFactory<>("tipoReporte"));
@@ -73,23 +76,24 @@ public class ReportesController implements Initializable {
 
     private void cargarHistorial() {
         listaReportes.clear();
+        
         try {
             Connection con = new ConexionSQL().conectar();
+            
             if (con != null) {
-            	ReporteDao reporteDao = new ReporteDaoImpl();
-            	List<Reporte> historial;
-                
+                ReporteDao reporteDao = new ReporteDaoImpl();
+                List<Reporte> historial;
+
                 if (esEmpleado) {
                     historial = reporteDao.obtenerHistorialEmpleado(usuarioIdActual);
                 } else {
                     historial = reporteDao.obtenerHistorialUsuario(usuarioIdActual);
                 }
-                
+
                 listaReportes.addAll(historial);
                 con.close();
             }
-            
-            listaReportes.addAll(historial);
+
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error al cargar historial de reportes.");
