@@ -14,7 +14,7 @@ public class Main extends Application {
 		try {
 			// 1. Cargamos el diseño desde la carpeta de vistas
 			// Nota: El nombre del archivo debe terminar en .fxml
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/EscenaPrincipal.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/loginView.fxml"));
 			Parent root = loader.load();
 
 			// 2. Creamos la escena (el contenido de la ventana)

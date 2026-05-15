@@ -10,6 +10,7 @@ import application.model.ConexionSQL;
 import application.model.Reporte;
 import application.model.ReporteDao;
 import application.model.ReporteDaoImpl;
+import application.model.UserSession;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -45,9 +46,8 @@ public class ReportesController implements Initializable {
     @FXML
     private TableColumn<Reporte, Timestamp> colFecha;
 
-    // TODO: Esto debería venir de la sesión del usuario logueado.
-    // Por ahora usamos 1 tal como lo acordamos.
-    private int usuarioIdActual = 1;
+    // Obtenemos el ID de la sesión actual
+    private int usuarioIdActual = (UserSession.getInstance().getClient() != null) ? UserSession.getInstance().getClient().getIdUser() : 1;
     // Si queremos probar como empleado, cambiar este booleano. Por defecto, usuario.
     private boolean esEmpleado = false; 
 
@@ -74,22 +74,18 @@ public class ReportesController implements Initializable {
     private void cargarHistorial() {
         listaReportes.clear();
         try {
-            Connection con = new ConexionSQL().conectar();
-            if (con != null) {
-            	ReporteDao reporteDao = new ReporteDaoImpl();
-            	List<Reporte> historial;
-                
-                if (esEmpleado) {
-                    historial = reporteDao.obtenerHistorialEmpleado(usuarioIdActual);
-                } else {
-                    historial = reporteDao.obtenerHistorialUsuario(usuarioIdActual);
-                }
-                
-                listaReportes.addAll(historial);
-                con.close();
+            ReporteDao reporteDao = new ReporteDaoImpl();
+            List<Reporte> historial;
+            
+            if (esEmpleado) {
+                historial = reporteDao.obtenerHistorialEmpleado(usuarioIdActual);
+            } else {
+                historial = reporteDao.obtenerHistorialUsuario(usuarioIdActual);
             }
             
-            listaReportes.addAll(historial);
+            if (historial != null) {
+                listaReportes.addAll(historial);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error al cargar historial de reportes.");
@@ -111,25 +107,13 @@ public class ReportesController implements Initializable {
         nuevoReporte.setDescripcionReporte(descripcion);
 
         try {
-            Connection con = new ConexionSQL().conectar();
-            if (con != null) {
-            	ReporteDao reporteDao = new ReporteDaoImpl();                
-                if (esEmpleado) {
-                    nuevoReporte.setIdEmpleadoReporte(usuarioIdActual);
-                    reporteDao.crearReporteEmpleado(nuevoReporte);
-                } else {
-                    nuevoReporte.setIdUsuario(usuarioIdActual);
-                    reporteDao.crearReporteUsuario(nuevoReporte);
-                }
-
-                con.close();
-                
-                mostrarAlerta("Éxito", "El reporte ha sido enviado correctamente.");
-                
-                // Limpiar campos y recargar historial
-                combo_tipoReporte.setValue(null);
-                txt_descripcion.clear();
-                cargarHistorial();
+            ReporteDao reporteDao = new ReporteDaoImpl();                
+            if (esEmpleado) {
+                nuevoReporte.setIdEmpleadoReporte(usuarioIdActual);
+                reporteDao.crearReporteEmpleado(nuevoReporte);
+            } else {
+                nuevoReporte.setIdUsuario(usuarioIdActual);
+                reporteDao.crearReporteUsuario(nuevoReporte);
             }
 
             mostrarAlerta("Éxito", "El reporte ha sido enviado correctamente.");

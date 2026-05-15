@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import application.model.ConexionSQL;
 import application.model.Client;
+import application.model.UserSession;
 
 public class LoginController {
 
@@ -49,6 +50,7 @@ public class LoginController {
 			lbl_mensaje.setText("El correo no existe");
 		} else {
 			if (password.equals(cliente.getPassword())) {
+				UserSession.getInstance().setClient(cliente);
 				try {
 					FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/EscenaPrincipal.fxml"));
 					Parent root = loader.load();
