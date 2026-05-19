@@ -8,6 +8,9 @@ viviendas, clasificación de residuos, reportes ciudadanos y control de rutas.
 Además, busca concientizar sobre la importancia del reciclaje y el manejo adecuado 
 de residuos. 
 
+<img width="967" height="602" alt="image" src="https://github.com/user-attachments/assets/409a0723-807b-4adc-a66b-cc6368b74518" />
+
+
 
 ## Introduccion
 
@@ -19,9 +22,9 @@ Sin embargo, el programa tuvo poca participación y problemas operativos. Se
 reportó que la empresa recolectora recogía los residuos mezclados, lo que provocó 
 que muchas personas dejaran de separar la basura.  
 
+La intención es romper con el sistema actual y concientizar a las personas sobre la importancia del reciclaje, también se busca agregar un sistema de reportes donde el empleado pueda reportar viviendas que no separaron residuos, y el usuario pueda reportar incumplimientos en días de recolección o mezcla de basura.
 
 
-<img width="967" height="602" alt="image" src="https://github.com/user-attachments/assets/409a0723-807b-4adc-a66b-cc6368b74518" />
 
 
 ## Desarrollo
@@ -35,6 +38,12 @@ Se propone un sistema básico de tres recipientes:
 | ![#007bff](https://dummyimage.com/15/007bff/ffffff.png) Azul | Reciclables | plástico, latas, envases, cartón |
 | ![#000000](https://dummyimage.com/15/000000/ffffff.png) Negro | No reciclable | pañales, papel higiénico, colillas |
 
+
+
+## Calendario
+Este Calendario por medio de un registro previo muestra de manera interactiva los días correspondientes al tipo de recolección que se llevara a cabo en tu localidad, tendrás acceso al nombre de los trabajadores, así como la matricula del camión, el nombre de la ruta y un apartado con información para las personas que no están familiarizadas con el reciclaje donde podrán consultar el tipo de residuos que admite cada contenedor.
+
+<img width="1146" height="630" alt="image" src="https://github.com/user-attachments/assets/cbde8f27-8f19-4111-84b5-b4da3e039dd6" />
 
 
 ## Empleado
