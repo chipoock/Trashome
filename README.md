@@ -47,13 +47,13 @@ Cada empleado tendrá que registrarse y asignar la unidad con la que trabajará 
 
 ## Camiones
 
-La aplicación ayudará a organizar mejor el sistema utilizado mediante un registro de camiones y conductores clasificados por rutas. Se tomará en cuenta las placas del camión, código de empleado y ruta
+La aplicación ayudará a organizar mejor el sistema utilizado mediante un registro de camiones y conductores clasificados por rutas. Se tomará en cuenta la Matricula del camión, Código de empleado, Tipo de contenedor (Orgánico, Reciclable, inorgánico) y nombre de la Ruta
 
 <img width="1157" height="637" alt="image" src="https://github.com/user-attachments/assets/97dc86df-00e9-4340-b1f5-c2d2ccbbc92c" />
 
 
 ## Rutas
-Se implementa un sistema de registro de rutas donde por medio de un mapa podrás ver las calles e ir registrándolas para crear una ruta. Se piden datos como: el nombre de la ruta, código postal, municipio, frecuencia de recolección, tipo de asentamiento y nombre del asentamiento
+Se implementa un sistema de registro de rutas donde por medio de un mapa podrás ver las calles e ir registrándolas para crear una ruta. Se piden datos como: el nombre de la ruta, código postal, municipio, frecuencia de recolección y tipo de asentamiento.
 
 <img width="1209" height="665" alt="image" src="https://github.com/user-attachments/assets/2a831091-a9ce-4c11-83c7-33d623211dbe" />
 
