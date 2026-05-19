@@ -9,6 +9,7 @@ public class Route {
 	private String nomAsentamiento = "NULL";
 
 	private static ArrayList<String> calles = new ArrayList<>();
+	private ArrayList<String> callesCons = new ArrayList<>();
 
 	
 	public Route (int codigoPostal, String tipoAsentamiento, String municipio , String nomRuta, String nomAsentamiento, String frecuencia, ArrayList<String> callesCons ) {
