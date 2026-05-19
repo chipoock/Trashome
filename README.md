@@ -77,18 +77,24 @@ El sistema de reportes permitirá registrar incidencias relacionadas con la reco
 
 Para el desarrollo del proyecto Trashome se diseñó e implementó una base de datos relacional utilizando un modelo entidad-relación elaborado en Draw.io. El diseño inició con la identificación de las entidades principales del sistema: Empleados, Usuarios, Camiones, Rutas, Residuos y Reportes. Posteriormente se definieron sus atributos principales, como identificadores, nombres, correos electrónicos, direcciones, matrículas, tipos de camión, fechas y descripciones de reportes.
 
- Después del análisis se establecieron las relaciones entre tablas para garantizar la organización de la información. Por ejemplo, los empleados pueden ser asignados a camiones mediante la tabla EmpCam, los camiones se relacionan con rutas por medio de CamRut, y los reportes se vinculan con empleados y usuarios mediante las tablas RepEmp y RepUs.
-
-Se utilizaron claves primarias (PK) para identificar cada registro y claves foráneas (FK) para conectar las tablas entre sí. Esta estructura permite mantener integridad en los datos, evitar duplicidad de información y facilitar consultas dentro del sistema.
-
 <img width="1358" height="621" alt="image" src="https://github.com/user-attachments/assets/e4974a0a-6948-4208-a641-3e6ab8ff91bb" />
-
-<img width="1430" height="558" alt="image" src="https://github.com/user-attachments/assets/5ce35a2e-d28b-4445-8a7d-4e4c209d5be9" />
-
+<img width="1358" height="621" alt="image" src="https://github.com/user-attachments/assets/e4974a0a-6948-4208-a641-3e6ab8ff91bb" />
 <img width="920" height="536" alt="image" src="https://github.com/user-attachments/assets/e5f1d97f-b03d-481b-8ab5-88ea48d47df8" />
 
 
+
+
+## 
+ Después del análisis se establecieron las relaciones entre tablas para garantizar la organización de la información. Por ejemplo, los empleados pueden ser asignados a camiones mediante la tabla EmpCam, los camiones se relacionan con rutas por medio de CamRut, y los reportes se vinculan con empleados y usuarios mediante las tablas RepEmp y RepUs.
+ 
 <img width="1270" height="484" alt="image" src="https://github.com/user-attachments/assets/2a1f614e-43c2-4e4f-9afa-1205612ad8df" />
+
+Se utilizaron claves primarias (PK) para identificar cada registro y claves foráneas (FK) para conectar las tablas entre sí. Esta estructura permite mantener integridad en los datos, evitar duplicidad de información y facilitar consultas dentro del sistema.
+
+
+
+
+
 
 
 
